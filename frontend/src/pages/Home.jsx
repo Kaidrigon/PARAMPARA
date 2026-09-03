@@ -302,18 +302,18 @@ export default function Home() {
                 </button>
 
                 <button
-                  className="button button--secondary"
-                  type="button"
-                  onClick={() => {
-                    document
-                      .getElementById("timeline")
-                      ?.scrollIntoView({
-                        behavior: "smooth",
-                      });
-                  }}
-                >
-                  HOW IT WORKS
-                </button>
+  className="button button--secondary"
+  type="button"
+  onClick={() => {
+    window.open(
+      "https://github.com/Kaidrigon/PARAMPARA",
+      "_blank",
+      "noopener,noreferrer"
+    );
+  }}
+>
+  HOW IT WORKS
+</button>
               </div>
 
               <div className="hero-principle">
