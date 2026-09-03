@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import TraceJourney from "../components/trace/TraceJourney";
+
 import { traceClaim } from "../api/trace";
 
 import "./Home.css";
@@ -12,18 +14,21 @@ const layers = [
     question: "What does the source actually say?",
     meta: "TEXTUAL EVIDENCE",
   },
+
   {
     number: "02",
     title: "INTERPRETATION",
     question: "How have traditions understood it?",
     meta: "COMMENTARY",
   },
+
   {
     number: "03",
     title: "TRADITION",
     question: "How has the idea lived beyond the page?",
     meta: "PRACTICE · MEMORY · CULTURE",
   },
+
   {
     number: "04",
     title: "MODERN CLAIM",
@@ -50,31 +55,61 @@ function Reveal({ children, className = "" }) {
   return <div className={`reveal ${className}`}>{children}</div>;
 }
 
-function ExploreCard({ number, title, description, label }) {
-  return (
+function ExploreCard({
+  number,
+  title,
+  description,
+  label,
+  to,
+}) {
+  const card = (
     <article className="explore-card">
       <div className="explore-card__top">
         <span>{number}</span>
-        <span className="explore-card__arrow">↗</span>
+
+        <span className="explore-card__arrow">
+          ↗
+        </span>
       </div>
 
       <div className="explore-card__content">
         <h3>{title}</h3>
+
         <p>{description}</p>
       </div>
 
-      <div className="explore-card__label">{label} →</div>
+      <div className="explore-card__label">
+        {label} →
+      </div>
     </article>
   );
+
+  if (to) {
+    return (
+      <Link
+        to={to}
+        className="explore-card-link"
+        aria-label={`Explore ${title}`}
+      >
+        {card}
+      </Link>
+    );
+  }
+
+  return card;
 }
 
 function PeacockTrace({ className = "" }) {
   return (
-    <div className={`peacock-trace ${className}`} aria-hidden="true">
+    <div
+      className={`peacock-trace ${className}`}
+      aria-hidden="true"
+    >
       <span className="peacock-trace__line peacock-trace__line--one" />
       <span className="peacock-trace__line peacock-trace__line--two" />
       <span className="peacock-trace__line peacock-trace__line--three" />
       <span className="peacock-trace__line peacock-trace__line--four" />
+
       <span className="peacock-eye" />
     </div>
   );
@@ -125,6 +160,7 @@ export default function Home() {
 
     try {
       const result = await traceClaim(claim);
+
       setTraceResult(result);
     } catch (error) {
       console.error(error);
@@ -139,15 +175,20 @@ export default function Home() {
 
   return (
     <main className="home">
-
       {/* =====================================================
           NAVBAR
       ===================================================== */}
 
-      <nav className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
+      <nav
+        className={`navbar ${
+          scrolled ? "navbar--scrolled" : ""
+        }`}
+      >
         <div className="container navbar__inner">
           <a href="#" className="brand">
-            <div className="brand__name">PARAMPARA</div>
+            <div className="brand__name">
+              PARAMPARA
+            </div>
 
             <div className="brand__sub">
               INDIAN KNOWLEDGE SYSTEMS
@@ -156,12 +197,30 @@ export default function Home() {
 
           <div className="navbar__links">
             <a href="#explore">Explore</a>
-            <a href="#sources">Sources</a>
-            <a href="#timeline">Timeline</a>
-            <a href="#about">About</a>
 
-            <button className="nav-button" type="button">
-              BEGIN EXPLORING <span>→</span>
+            <a href="/sources">Sources</a>
+
+            <Link to="/traditions">
+              Traditions
+            </Link>
+
+            <a href="/timeline">Timeline</a>
+
+            <a href="https://github.com/Kaidrigon/PARAMPARA">About</a>
+
+            <button
+              className="nav-button"
+              type="button"
+              onClick={() => {
+                document
+                  .getElementById("explore")
+                  ?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+              }}
+            >
+              BEGIN EXPLORING{" "}
+              <span>→</span>
             </button>
           </div>
 
@@ -183,6 +242,7 @@ export default function Home() {
         <div className="hero-grid-background" />
 
         <div className="hero-circle hero-circle--large" />
+
         <div className="hero-circle hero-circle--small" />
 
         <SketchMark
@@ -219,15 +279,23 @@ export default function Home() {
               </h1>
 
               <p className="hero-description">
-                PARAMPARA traces ideas across primary texts,
-                interpretations, traditions and modern claims —
-                so you can explore Indian knowledge with context.
+                PARAMPARA traces ideas across primary
+                texts, interpretations, traditions and
+                modern claims — so you can explore Indian
+                knowledge with context.
               </p>
 
               <div className="hero-actions">
                 <button
                   className="button button--primary"
                   type="button"
+                  onClick={() => {
+                    document
+                      .getElementById("explore")
+                      ?.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                  }}
                 >
                   EXPLORE THE ARCHIVE
                   <span>→</span>
@@ -236,6 +304,13 @@ export default function Home() {
                 <button
                   className="button button--secondary"
                   type="button"
+                  onClick={() => {
+                    document
+                      .getElementById("timeline")
+                      ?.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                  }}
                 >
                   HOW IT WORKS
                 </button>
@@ -364,9 +439,9 @@ export default function Home() {
             </h2>
 
             <p>
-              Ideas move from text to interpretation, from
-              interpretation to tradition, and from tradition
-              into the world we inhabit today.
+              Ideas move from text to interpretation,
+              from interpretation to tradition, and from
+              tradition into the world we inhabit today.
             </p>
           </div>
         </Reveal>
@@ -412,12 +487,14 @@ export default function Home() {
                   EXPLORE
                 </div>
 
-                <h2>Begin with a question.</h2>
+                <h2>
+                  Begin with a question.
+                </h2>
               </div>
 
               <p>
-                Explore ideas, texts and traditions through the
-                layers that shaped them.
+                Explore ideas, texts and traditions through
+                the layers that shaped them.
               </p>
             </div>
           </Reveal>
@@ -426,22 +503,27 @@ export default function Home() {
             <ExploreCard
               number="01"
               title="Bhagavad Gita"
-              description="A dialogue on duty, action, knowledge and liberation — examined through text, commentary and tradition."
+              description="A dialogue on duty, action, knowledge and liberation — examined through text, commentary and tradition.(coming soon)"
               label="EXPLORE TEXT"
             />
 
             <ExploreCard
               number="02"
               title="Ideas"
-              description="Dharma, karma, yoga, moksha, atman and other ideas traced through their different contexts."
+              description="Dharma, karma, yoga, moksha, atman and other ideas traced through their different contexts.(coming soon)"
               label="EXPLORE CONCEPTS"
             />
+
+            {/* =================================================
+                LIVING TRADITIONS → JANMASHTAMI
+            ================================================= */}
 
             <ExploreCard
               number="03"
               title="Living Traditions"
               description="How ideas move from text into practice, memory, interpretation and culture."
-              label="EXPLORE TRADITIONS"
+              label="EXPLORE JANMASHTAMI"
+              to="/janmashtami"
             />
           </div>
         </div>
@@ -478,7 +560,9 @@ export default function Home() {
                     ? "layer-row--active"
                     : ""
                 }`}
-                onMouseEnter={() => setActiveLayer(index)}
+                onMouseEnter={() =>
+                  setActiveLayer(index)
+                }
               >
                 <span className="layer-number">
                   {layer.number}
@@ -519,8 +603,8 @@ export default function Home() {
               </h2>
 
               <p>
-                Follow an idea across centuries — from text to
-                interpretation to living tradition.
+                Follow an idea across centuries — from text
+                to interpretation to living tradition.
               </p>
             </div>
           </Reveal>
@@ -581,8 +665,8 @@ export default function Home() {
 
               <p>
                 PARAMPARA isn't about telling you what to
-                believe. It's about helping you trace where an
-                idea came from.
+                believe. It's about helping you trace where
+                an idea came from.
               </p>
             </div>
           </Reveal>
@@ -595,7 +679,10 @@ export default function Home() {
                   className="question-card"
                 >
                   <div className="question-card__top">
-                    <span>0{index + 1}</span>
+                    <span>
+                      0{index + 1}
+                    </span>
+
                     <span className="question-arrow">
                       →
                     </span>
@@ -613,13 +700,17 @@ export default function Home() {
           FEATURED SOURCE
       ===================================================== */}
 
-      <section id="sources" className="featured-section">
+      <section
+        id="sources"
+        className="featured-section"
+      >
         <div className="narrow-container">
           <PeacockTrace className="peacock-trace--featured" />
 
           <Reveal>
             <div className="featured-card">
               <div className="featured-circle featured-circle--one" />
+
               <div className="featured-circle featured-circle--two" />
 
               <SketchMark
@@ -633,7 +724,9 @@ export default function Home() {
                     FEATURED SOURCE
                   </span>
 
-                  <span>ARCHIVE / 001</span>
+                  <span>
+                    ARCHIVE / 001
+                  </span>
                 </div>
 
                 <div className="featured-main">
@@ -693,7 +786,9 @@ export default function Home() {
                 Start with something
                 <br />
 
-                <span>you've heard.</span>
+                <span>
+                  you've heard.
+                </span>
               </h2>
 
               <p>
@@ -733,7 +828,10 @@ export default function Home() {
           </Reveal>
 
           {traceError && (
-            <div className="trace-error" role="alert">
+            <div
+              className="trace-error"
+              role="alert"
+            >
               {traceError}
             </div>
           )}
@@ -753,7 +851,10 @@ export default function Home() {
           FINAL CTA
       ===================================================== */}
 
-      <section id="about" className="final-section">
+      <section
+        id="about"
+        className="final-section"
+      >
         <PeacockTrace className="peacock-trace--final" />
 
         <Reveal>
@@ -769,13 +870,20 @@ export default function Home() {
           </h2>
 
           <p>
-            Explore the texts, ideas and traditions that shaped
-            Indian knowledge.
+            Explore the texts, ideas and traditions that
+            shaped Indian knowledge.
           </p>
 
           <button
             type="button"
             className="button button--primary final-button"
+            onClick={() => {
+              document
+                .getElementById("explore")
+                ?.scrollIntoView({
+                  behavior: "smooth",
+                });
+            }}
           >
             ENTER PARAMPARA →
           </button>
@@ -804,10 +912,25 @@ export default function Home() {
               EXPLORE
             </div>
 
-            <a href="#sources">Sources</a>
-            <a href="#explore">Concepts</a>
-            <a href="/timeline">Timeline</a>
-            <a href="/traditions">Traditions</a>
+            <a href="#sources">
+              Sources
+            </a>
+
+            <a href="#explore">
+              Concepts
+            </a>
+
+            <Link to="/janmashtami">
+              Janmashtami
+            </Link>
+
+            <Link to="/timeline">
+              Timeline
+            </Link>
+
+            <Link to="/traditions">
+              Traditions
+            </Link>
           </div>
 
           <div className="footer-column">
@@ -815,9 +938,17 @@ export default function Home() {
               PROJECT
             </div>
 
-            <a href="#about">About</a>
-            <a href="#about">Methodology</a>
-            <a href="#about">Credits</a>
+            <a href="#about">
+              About
+            </a>
+
+            <a href="#about">
+              Methodology
+            </a>
+
+            <a href="#about">
+              Credits
+            </a>
           </div>
 
           <div className="footer-copyright">

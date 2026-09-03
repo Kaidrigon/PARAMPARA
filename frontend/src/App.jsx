@@ -5,6 +5,7 @@ import Traditions from "./pages/Traditions";
 import Tradition from "./pages/Tradition";
 import Timeline from "./pages/Timeline";
 import Source from "./pages/Source";
+import Janmashtami from "./pages/Janmashtami";
 
 function App() {
   return (
@@ -23,6 +24,11 @@ function App() {
       <Route
         path="/sources/:slug"
         element={<Source />}
+      />
+
+      <Route
+        path="/janmashtami"
+        element={<Janmashtami />}
       />
     </Routes>
   );

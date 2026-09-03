@@ -1,77 +1,128 @@
 const festivalData = [
   {
     id: "aranmula-valla-sadya",
-
     region: "ARANMULA",
     state: "KERALA",
+    mapState: "Kerala",
+    mapCode: "INKL",
 
     title: "Ashtami Rohini Valla Sadya",
 
     eyebrow: "KRISHNA'S BIRTHDAY BY BOAT",
 
     short:
-      "At Aranmula, Krishna's birthday becomes a celebration of boats, songs, temple rituals and an enormous feast.",
+      "At Aranmula, Krishna's birthday becomes a celebration of boats, songs, temple ritual and an enormous feast.",
 
-    hook:
-      "Krishna's birthday arrives by boat.",
+    hook: "Krishna's birthday arrives by boat.",
 
     category: "FESTIVAL-SPECIFIC",
 
-    visual: "boat",
+    mapPoint: {
+      longitude: 76.68,
+      latitude: 9.32,
+    },
+
+    images: [
+      {
+        src: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Aranmula_valla_sadhya_--_Melukara_Palliyodam_--_Snake_Boat.jpg",
+        alt: "Palliyodam snake boat travelling along the Pampa River near Aranmula",
+        caption:
+          "A Palliyodam heads toward Aranmula for the Valla Sadya.",
+        credit: "Alenalexp / Wikimedia Commons",
+        license: "CC BY-SA 4.0",
+        sourceUrl:
+          "https://commons.wikimedia.org/wiki/File:Aranmula_valla_sadhya_--_Melukara_Palliyodam_--_Snake_Boat.jpg",
+      },
+      {
+        src: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Aranmula_valla_sadhya_--_Melukara_Palliyodam_--_Snake_Boat3.jpg",
+        alt: "Aranmula Palliyodam on the Pampa River",
+        caption: "The river and the boat are part of the tradition itself.",
+        credit: "Alenalexp / Wikimedia Commons",
+        license: "CC BY-SA 4.0",
+        sourceUrl:
+          "https://commons.wikimedia.org/wiki/File:Aranmula_valla_sadhya_--_Melukara_Palliyodam_--_Snake_Boat3.jpg",
+      },
+    ],
 
     details: {
       what:
-        "Traditional Palliyodams arrive at the Aranmula Parthasarathy Temple as part of the Ashtami Rohini Valla Sadya.",
+        "On Ashtami Rohini, traditional Palliyodams arrive at the Aranmula Parthasarathy Temple as part of the Valla Sadya tradition.",
 
       experience:
-        "Boatmen circle the temple while devotional songs are performed, followed by a large ceremonial feast.",
+        "Boatmen row toward the temple, circle it while singing Vanchipattu, and then take part in a large ceremonial feast served on plantain leaves.",
 
       unexpected:
-        "The celebration is inseparable from the river and the boat culture of Aranmula.",
+        "The celebration is inseparable from the Pampa River, the Palliyodams and the food culture of central Travancore.",
 
       parampara:
-        "This is a specific regional tradition. It should not be treated as the way all of Kerala celebrates Janmashtami.",
+        "This is a specific regional tradition associated with Aranmula. It should not be presented as the way all of Kerala celebrates Janmashtami.",
     },
 
     source: {
       name: "Kerala Tourism",
       label: "Government tourism source",
-      url: "https://www.keralatourism.org/monsoon-festivals/festival.php?id=39",
+      url: "https://www.keralatourism.org/kerala-article/2023/aranmula-vallasadya-pathanamthitta/1332",
     },
   },
 
   {
     id: "nathdwara-nandamahotsav",
-
     region: "NATHDWARA",
     state: "RAJASTHAN",
+    mapState: "Rajasthan",
+    mapCode: "INRJ",
 
     title: "Nandamahotsav",
 
     eyebrow: "THE CELEBRATION AFTER THE BIRTH",
 
     short:
-      "At Nathdwara, Krishna's birth flows into a celebration of Nanda and Yashoda's joy.",
+      "At Nathdwara, Krishna's birth flows into a celebration centred on the joy of Nanda and Yashoda.",
 
-    hook:
-      "Janmashtami doesn't necessarily end at midnight.",
+    hook: "Janmashtami doesn't necessarily end at midnight.",
 
     category: "FESTIVAL-SPECIFIC",
 
-    visual: "cradle",
+    mapPoint: {
+      longitude: 73.82,
+      latitude: 24.93,
+    },
+
+    images: [
+      {
+        src: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Nanda_Mahotsava_in_Nathdwara_%28second_half_of_18th_century%29.jpg",
+        alt: "Historical painting depicting Nanda Mahotsava in Nathdwara",
+        caption:
+          "An eighteenth-century painting depicting Nanda Mahotsava in Nathdwara.",
+        credit: "Wikimedia Commons",
+        license: "Publicly documented museum/source reproduction",
+        sourceUrl:
+          "https://commons.wikimedia.org/wiki/File:Nanda_Mahotsava_in_Nathdwara_(second_half_of_18th_century).jpg",
+      },
+      {
+        src: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Nathdwara_Temple.jpg",
+        alt: "Nathdwara temple",
+        caption:
+          "Nathdwara's temple tradition provides the setting for Nandamahotsav.",
+        credit: "Wikimedia Commons",
+        license: "See source page",
+        sourceUrl:
+          "https://commons.wikimedia.org/wiki/Category:Nathdwara",
+      },
+    ],
 
     details: {
       what:
         "Nandamahotsav is celebrated following Krishna's birth in the Nathdwara temple tradition.",
 
       experience:
-        "The celebration centres on the joy surrounding child Krishna, with devotional singing, dancing and ceremonial observances.",
+        "The celebration turns toward the happiness surrounding child Krishna, with devotional singing, dancing and ceremonial observances.",
 
       unexpected:
-        "Instead of focusing only on the moment of Krishna's birth, the celebration turns toward the happiness of Nanda and Yashoda.",
+        "The emphasis shifts from the instant of Krishna's birth toward the joy of Nanda and Yashoda.",
 
       parampara:
-        "This belongs specifically to the Nathdwara / Pushtimarg devotional context.",
+        "This belongs specifically to the Nathdwara and Pushtimarg devotional context.",
     },
 
     source: {
@@ -83,9 +134,10 @@ const festivalData = [
 
   {
     id: "kerala-uriyadi",
-
     region: "KERALA",
     state: "KERALA",
+    mapState: "Kerala",
+    mapCode: "INKL",
 
     title: "Uriyadi",
 
@@ -94,25 +146,40 @@ const festivalData = [
     short:
       "In parts of Kerala, Krishna's childhood mischief becomes a competitive pot-breaking tradition.",
 
-    hook:
-      "The butter thief gets his own challenge.",
+    hook: "The butter thief gets his own challenge.",
 
     category: "FESTIVAL-SPECIFIC",
 
-    visual: "pot",
+    mapPoint: {
+      longitude: 76.27,
+      latitude: 10.52,
+    },
+
+    images: [
+      {
+        src: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Uriyadii1.jpg",
+        alt: "Uriyadi pot-breaking celebration in Kerala",
+        caption:
+          "Uriyadi, a pot-breaking tradition associated with Krishna Janmashtami in Kerala.",
+        credit: "Fotokannan / Wikimedia Commons",
+        license: "See source page",
+        sourceUrl:
+          "https://commons.wikimedia.org/wiki/File:Uriyadii1.jpg",
+      },
+    ],
 
     details: {
       what:
         "Uriyadi is a traditional pot-breaking game associated with Shri Krishna Jayanti celebrations.",
 
       experience:
-        "A participant attempts to break a suspended earthen pot while dealing with obstacles such as a moving rope or water.",
+        "A participant attempts to break a suspended earthen pot while dealing with obstacles such as a moving rope, water or distraction.",
 
       unexpected:
-        "The familiar Krishna childhood story becomes a physical community game rather than simply a symbolic story.",
+        "A familiar Krishna childhood story becomes a physical community game rather than simply a symbolic story.",
 
       parampara:
-        "Uriyadi should not be presented as identical to Maharashtra's Dahi Handi; the local practice has its own context.",
+        "Uriyadi should not be presented as identical to Maharashtra's Dahi Handi. The Kerala practice has its own local context.",
     },
 
     source: {
@@ -124,9 +191,10 @@ const festivalData = [
 
   {
     id: "majuli-janmashtami",
-
     region: "MAJULI",
     state: "ASSAM",
+    mapState: "Assam",
+    mapCode: "INAS",
 
     title: "Janmashtami in the Satras",
 
@@ -135,25 +203,50 @@ const festivalData = [
     short:
       "On Majuli, Janmashtami enters Assam's Vaishnavite Satra tradition through prayer, fasting, devotional performance and drama.",
 
-    hook:
-      "Here, Krishna's birth lives inside the Satra.",
+    hook: "Here, Krishna's birth lives inside the Satra.",
 
     category: "FESTIVAL-SPECIFIC",
 
-    visual: "satra",
+    mapPoint: {
+      longitude: 94.02,
+      latitude: 27.0,
+    },
+
+    images: [
+      {
+        src: "https://majuli.assam.gov.in/sites/default/files/inline-images/Auniati%20Satra.jpg",
+        alt: "Auniati Satra in Majuli",
+        caption:
+          "A Satra landscape in Majuli, where Vaishnavite cultural traditions are maintained.",
+        credit: "Majuli District Administration",
+        license: "Government of Assam source",
+        sourceUrl:
+          "https://majuli.assam.gov.in/tourist-place-detail/218",
+      },
+      {
+        src: "https://majuli.assam.gov.in/sites/default/files/inline-images/Garamur%20Satra.jpg",
+        alt: "Garamur Satra in Majuli",
+        caption:
+          "Garamur Satra is one of Majuli's major Satra institutions.",
+        credit: "Majuli District Administration",
+        license: "Government of Assam source",
+        sourceUrl:
+          "https://majuli.assam.gov.in/tourist-place-detail/271",
+      },
+    ],
 
     details: {
       what:
-        "Janmashtami is observed in the Satras of Majuli, with some Satras celebrating for one day and others for two.",
+        "Janmashtami is observed in Majuli's Satras, with some Satras observing it for one day and others for two.",
 
       experience:
-        "The celebrations can include puja, congregational nam-prasanga, fasting and dramatic performances depicting Krishna's birth.",
+        "Practices include puja, congregational nam-prasanga, fasting and dramatic performances depicting Krishna's birth.",
 
       unexpected:
-        "Majuli's version has its own ritual details: the Government of Assam's Majuli district account notes that coconut is not offered during Janmashtami, while pakamithoi is a special offering.",
+        "The Government of Assam's Majuli account notes that coconut is not offered during Janmashtami, while pakamithoi is a special offering.",
 
       parampara:
-        "This is not the same thing as Majuli's famous Raas Utsav. Raas is a separate festival. Here we are focusing specifically on the documented Janmashtami practices of the Satras.",
+        "This is specifically about Janmashtami inside the Satra tradition. It should not be conflated with Majuli's separate Raas Utsav.",
     },
 
     source: {
@@ -171,9 +264,10 @@ const festivalData = [
 
   {
     id: "manipur-krishna",
-
     region: "MANIPUR",
     state: "MANIPUR",
+    mapState: "Manipur",
+    mapCode: "INMN",
 
     title: "Raas Leela",
 
@@ -182,12 +276,27 @@ const festivalData = [
     short:
       "In Manipur, Krishna devotion became deeply embedded in the region's classical performing arts.",
 
-    hook:
-      "Krishna became part of a dance tradition.",
+    hook: "Krishna became part of a dance tradition.",
 
     category: "REGIONAL TRADITION",
 
-    visual: "dance",
+    mapPoint: {
+      longitude: 93.95,
+      latitude: 24.82,
+    },
+
+    images: [
+      {
+        src: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Raas_Leela.jpg",
+        alt: "Raas Leela dancers",
+        caption:
+          "Raas Leela expresses Radha-Krishna devotion through Manipuri performance.",
+        credit: "Ahidul Hasan / Wikimedia Commons",
+        license: "See source page",
+        sourceUrl:
+          "https://commons.wikimedia.org/wiki/File:Raas_Leela.jpg",
+      },
+    ],
 
     details: {
       what:
@@ -197,10 +306,10 @@ const festivalData = [
         "Dance, music, costume and devotional storytelling combine to express the relationship between Krishna, Radha and the gopis.",
 
       unexpected:
-        "Rather than being only a festival activity, Krishna's story became part of a sophisticated regional performance tradition.",
+        "Rather than remaining only a festival activity, Krishna's story became part of a sophisticated regional performance tradition.",
 
       parampara:
-        "This should not be presented as though every Raas Leela performance is specifically a Janmashtami ritual. It represents the wider Krishna devotional world of Manipur.",
+        "This is a wider Krishna devotional and performance tradition. It should not be presented as though every Raas Leela performance is specifically a Janmashtami ritual.",
     },
 
     source: {
@@ -212,23 +321,49 @@ const festivalData = [
 
   {
     id: "shamlaji-janmashtami",
-
     region: "SHAMLĀJI",
     state: "GUJARAT",
+    mapState: "Gujarat",
+    mapCode: "INGJ",
 
     title: "Janmashtami at Shamlaji",
 
     eyebrow: "BEYOND DWARKA",
 
     short:
-      "A lesser-known Gujarat entry that shows how Krishna devotion has more than one geographic centre.",
+      "A lesser-known Gujarat entry showing that Krishna devotion has more than one geographic centre.",
 
-    hook:
-      "Gujarat's Krishna story isn't only Dwarka.",
+    hook: "Gujarat's Krishna story isn't only Dwarka.",
 
     category: "REGIONAL TRADITION",
 
-    visual: "temple",
+    mapPoint: {
+      longitude: 73.39,
+      latitude: 23.69,
+    },
+
+    images: [
+      {
+        src: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Shamlaji_Hindu_Temple.jpg",
+        alt: "Shamlaji Hindu Temple in Gujarat",
+        caption:
+          "Shamlaji Temple stands on the Meshwo River and is dedicated to Vishnu/Krishna.",
+        credit: "Drpadhiyar23 / Wikimedia Commons",
+        license: "CC BY-SA 4.0",
+        sourceUrl:
+          "https://commons.wikimedia.org/wiki/File:Shamlaji_Hindu_Temple.jpg",
+      },
+      {
+        src: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Shamlaji_Temple.jpg",
+        alt: "Shamlaji Temple architecture",
+        caption:
+          "The temple is another geographic centre of Krishna devotion in Gujarat.",
+        credit: "Bhavesh Parmar / Wikimedia Commons",
+        license: "CC BY-SA 4.0",
+        sourceUrl:
+          "https://commons.wikimedia.org/wiki/File:Shamlaji_Temple.jpg",
+      },
+    ],
 
     details: {
       what:
@@ -241,7 +376,7 @@ const festivalData = [
         "For an audience accustomed to hearing Dwarka whenever Gujarat and Krishna are mentioned, Shamlaji provides another point on the map.",
 
       parampara:
-        "The purpose of this entry is geographic and cultural discovery, not to claim that Shamlaji has a single uniquely defined Janmashtami ritual.",
+        "This entry is about geographic and cultural discovery, not a claim that Shamlaji has one uniquely defined Janmashtami ritual.",
     },
 
     source: {
