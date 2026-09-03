@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+
 import "./Tradition.css";
 
 const traditionData = {
@@ -6,84 +7,138 @@ const traditionData = {
     name: "Advaita Vedanta",
     shortName: "Advaita",
     subtitle: "The philosophy of non-duality.",
-    interpreter: "Shankara",
+    interpreter: "Śaṅkara",
 
     what:
-      "Advaita Vedanta is one of the major traditions of Vedanta philosophy. The word Advaita is commonly understood as “not two”, expressing its emphasis on the non-dual nature of ultimate reality.",
+      "Advaita Vedanta is one of the major traditions of Vedanta philosophy. The word Advaita is commonly translated as “not two” or “non-dual”. Its central philosophical claim is that Brahman is ultimate reality and that the deepest nature of the self, ātman, is not ultimately different from Brahman.",
 
     importance:
-      "Advaita became one of the influential ways of interpreting the Upanishads, the Bhagavad Gita and the Brahma Sutras. Its philosophical vocabulary and commentarial tradition have had a lasting influence on Indian intellectual history.",
+      "Advaita became one of the most influential ways of interpreting the Upanishads, the Bhagavad Gita and the Brahma Sutras. Śaṅkara was a major systematizer and defender of this tradition, developing detailed arguments about reality, consciousness, knowledge and liberation.",
 
     ideas: [
       {
         title: "Brahman",
         text:
-          "Ultimate reality, understood in Advaita as non-dual and beyond ordinary distinctions.",
+          "Ultimate reality. Advaita understands Brahman as non-dual and not ultimately divided by the distinctions found in ordinary experience.",
       },
       {
-        title: "Atman",
+        title: "Ātman",
         text:
-          "The self, whose deepest nature is understood in relation to Brahman.",
+          "The self. Advaita holds that the deepest nature of the self is not ultimately separate from Brahman.",
       },
       {
-        title: "Maya",
+        title: "Māyā",
         text:
-          "A concept used to explain the appearance of multiplicity and the way ordinary experience is understood.",
+          "A concept used in Advaita's account of ordinary experience, appearance and the distinction between empirical reality and ultimate reality.",
       },
       {
         title: "Moksha",
         text:
-          "Liberation understood through knowledge of the true nature of reality and the self.",
+          "Liberation. Advaita connects liberation with knowledge of the true nature of the self and Brahman.",
       },
     ],
 
     gita:
-      "Advaita provides one philosophical framework through which passages of the Bhagavad Gita can be interpreted. Shankara's commentary is especially important for understanding how this tradition reads the Gita's teachings on action, knowledge and liberation.",
+      "Śaṅkara's Bhagavad Gita commentary provides an important Advaita reading of the text. His interpretation gives a significant place to knowledge, while also explaining the role of action and duty within the path toward liberation.",
+
+    perspective:
+      "For Advaita, the Gita is not simply a collection of motivational statements. Its teachings on action, knowledge and liberation are understood within a larger philosophical account of the self and ultimate reality.",
 
     sourceNote:
-      "PARAMPARA uses interpretive summaries rather than reproducing copyrighted commentary. Specific source references will be attached to individual interpretation records as the knowledge base expands.",
+      "This page is an introductory explanation, not a replacement for the primary texts. PARAMPARA separates the Gita's Sanskrit text from later commentaries so that an interpretation by Śaṅkara is not presented as though it were the verse itself.",
+
+    sources: [
+      {
+        title: "Śaṅkara — Bhagavad Gita Bhashya",
+        type: "PRIMARY SOURCE",
+        description:
+          "Śaṅkara's commentary on the Bhagavad Gita and an important source for studying the Advaita interpretation of the text.",
+        route: "/sources/shankara-gita-bhashya",
+      },
+      {
+        title: "Śaṅkara — Brahma Sutra Bhashya",
+        type: "PRIMARY SOURCE",
+        description:
+          "A major philosophical work for understanding the wider structure of Śaṅkara's Advaita Vedanta.",
+        route: "/sources/shankara-brahma-sutra-bhashya",
+      },
+      {
+        title: "Stanford Encyclopedia of Philosophy — Śaṅkara",
+        type: "SCHOLARLY SOURCE",
+        description:
+          "A detailed scholarly introduction to Śaṅkara, Advaita metaphysics, Brahman, ātman, māyā and liberation.",
+        route: "/sources/shankara",
+      },
+    ],
   },
 
   "vishishtadvaita-vedanta": {
     name: "Vishishtadvaita Vedanta",
     shortName: "Vishishtadvaita",
     subtitle: "Non-duality with distinction.",
-    interpreter: "Ramanuja",
+    interpreter: "Rāmānuja",
 
     what:
-      "Vishishtadvaita Vedanta is a major Vedanta tradition associated especially with Ramanuja. Its name is commonly translated as “qualified non-dualism”, expressing a distinctive understanding of unity together with real distinctions.",
+      "Vishishtadvaita Vedanta is a major Vedanta tradition associated especially with Rāmānuja. Its name is commonly translated as “qualified non-dualism”. More literally, it can be understood as a non-duality that includes real distinctions within the unified whole.",
 
     importance:
-      "The tradition became an influential framework for interpreting the Upanishads, the Bhagavad Gita and the Brahma Sutras. It also played an important role in the development of Vaishnava philosophical and devotional thought.",
+      "Rāmānuja developed Vishishtadvaita into a systematic philosophical and theological tradition that interprets the Upanishads, Bhagavad Gita and Brahma Sutras through a strongly theistic framework. The tradition became especially important within Sri Vaishnava thought and devotional practice.",
 
     ideas: [
       {
         title: "Brahman",
         text:
-          "Ultimate reality understood as possessing attributes and understood through a relationship with the individual self and the world.",
+          "The supreme reality, understood as a personal and qualified reality. Rāmānuja identifies Brahman with Nārāyaṇa/Viṣṇu.",
       },
       {
-        title: "Self",
+        title: "The Self",
         text:
-          "Individual selves are understood as real and distinct while remaining inseparably related to ultimate reality.",
+          "Individual selves are real and distinct, while remaining inseparably dependent upon and related to the supreme reality.",
       },
       {
-        title: "World",
+        title: "The World",
         text:
-          "The world is treated as real rather than simply an appearance to be dismissed.",
+          "The world is real rather than simply an illusion. It exists dependently in relation to Brahman.",
       },
       {
         title: "Moksha",
         text:
-          "Liberation is understood within a framework of knowledge, devotion and relationship with the ultimate reality.",
+          "Liberation is understood through knowledge, devotion, duty and the relationship between the individual self and the supreme reality.",
       },
     ],
 
     gita:
-      "Vishishtadvaita offers another philosophical framework for reading the Bhagavad Gita. Ramanuja's interpretation gives particular importance to devotion, duty and the relationship between the individual self and the supreme reality.",
+      "Rāmānuja's Bhagavad Gita commentary offers another major philosophical reading of the text. His interpretation places strong emphasis on devotion, duty, the reality of the individual self and its relationship with the supreme reality.",
+
+    perspective:
+      "Vishishtadvaita does not treat the individual self and the world as meaningless appearances. Instead, it understands them as real while remaining inseparably dependent upon Brahman.",
 
     sourceNote:
-      "PARAMPARA uses interpretive summaries rather than reproducing copyrighted commentary. Specific source references will be attached to individual interpretation records as the knowledge base expands.",
+      "This page presents an introductory summary of Vishishtadvaita. PARAMPARA treats Rāmānuja's interpretation as an interpretation within a tradition rather than as the only possible meaning of the Bhagavad Gita.",
+
+    sources: [
+      {
+        title: "Rāmānuja — Gita Bhashya",
+        type: "PRIMARY SOURCE",
+        description:
+          "Rāmānuja's commentary on the Bhagavad Gita and a central source for studying the Vishishtadvaita interpretation of the text.",
+        route: "/sources/ramanuja-gita-bhashya",
+      },
+      {
+        title: "Rāmānuja — Sri Bhashya",
+        type: "PRIMARY SOURCE",
+        description:
+          "Rāmānuja's major commentary on the Brahma Sutras and one of the central philosophical works of Vishishtadvaita.",
+        route: "/sources/ramanuja-sri-bhashya",
+      },
+      {
+        title: "Internet Encyclopedia of Philosophy — Rāmānuja",
+        type: "SCHOLARLY SOURCE",
+        description:
+          "A scholarly overview of Rāmānuja's metaphysics, theology, Vishishtadvaita and account of liberation.",
+        route: "/sources/ramanuja",
+      },
+    ],
   },
 };
 
@@ -96,7 +151,9 @@ export default function Tradition() {
       <main className="tradition-page">
         <div className="container tradition-not-found">
           <span>404</span>
+
           <h1>Tradition not found.</h1>
+
           <Link to="/traditions">
             ← Explore traditions
           </Link>
@@ -107,13 +164,13 @@ export default function Tradition() {
 
   return (
     <main className="tradition-page">
-      {/* HERO */}
+      {/* =====================================================
+          HERO
+      ===================================================== */}
+
       <header className="tradition-hero">
         <div className="container">
-          <Link
-            to="/traditions"
-            className="tradition-back"
-          >
+          <Link to="/traditions" className="tradition-back">
             ← ALL TRADITIONS
           </Link>
 
@@ -130,7 +187,10 @@ export default function Tradition() {
         </div>
       </header>
 
-      {/* WHAT IS IT */}
+      {/* =====================================================
+          WHAT IS IT?
+      ===================================================== */}
+
       <section className="tradition-section section">
         <div className="container">
           <SectionLabel
@@ -146,7 +206,10 @@ export default function Tradition() {
         </div>
       </section>
 
-      {/* WHY IT MATTERS */}
+      {/* =====================================================
+          WHY IT MATTERS
+      ===================================================== */}
+
       <section className="tradition-section tradition-section--alt section">
         <div className="container">
           <SectionLabel
@@ -162,7 +225,10 @@ export default function Tradition() {
         </div>
       </section>
 
-      {/* KEY IDEAS */}
+      {/* =====================================================
+          KEY IDEAS
+      ===================================================== */}
+
       <section className="tradition-section section">
         <div className="container">
           <SectionLabel
@@ -189,7 +255,10 @@ export default function Tradition() {
         </div>
       </section>
 
-      {/* GITA CONNECTION */}
+      {/* =====================================================
+          GITA CONNECTION
+      ===================================================== */}
+
       <section className="tradition-section tradition-section--dark section">
         <div className="container">
           <SectionLabel
@@ -206,10 +275,21 @@ export default function Tradition() {
 
             <p>{tradition.gita}</p>
           </div>
+
+          <div className="tradition-gita__perspective">
+            <span className="tradition-gita__perspective-label">
+              PARAMPARA NOTE
+            </span>
+
+            <p>{tradition.perspective}</p>
+          </div>
         </div>
       </section>
 
-      {/* SOURCE */}
+      {/* =====================================================
+          SOURCES
+      ===================================================== */}
+
       <section className="tradition-section section">
         <div className="container">
           <SectionLabel
@@ -232,10 +312,47 @@ export default function Tradition() {
 
             <p>{tradition.sourceNote}</p>
           </div>
+
+          {/* =================================================
+              RESEARCH SOURCES
+          ================================================= */}
+
+          <div className="tradition-research-list">
+            {tradition.sources.map((source) => (
+              <Link
+                to={source.route}
+                className="tradition-research-card"
+                key={source.title}
+                aria-label={`Open ${source.title}`}
+              >
+                <div className="tradition-research-card__top">
+                  <span>{source.type}</span>
+
+                  <span
+                    className="tradition-research-card__arrow"
+                    aria-hidden="true"
+                  >
+                    ↗
+                  </span>
+                </div>
+
+                <h3>{source.title}</h3>
+
+                <p>{source.description}</p>
+
+                <span className="tradition-research-card__open">
+                  EXPLORE SOURCE →
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* NAVIGATION */}
+      {/* =====================================================
+          NAVIGATION
+      ===================================================== */}
+
       <section className="tradition-next">
         <div className="container">
           <Link to="/traditions">

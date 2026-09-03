@@ -806,7 +806,7 @@ export default function Home() {
 
             <a href="#sources">Sources</a>
             <a href="#explore">Concepts</a>
-            <a href="#timeline">Timeline</a>
+            <a href="/timeline">Timeline</a>
             <a href="/traditions">Traditions</a>
           </div>
 
