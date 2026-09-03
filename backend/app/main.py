@@ -1,23 +1,58 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.database import test_database_connection
+from app.routes.trace import router as trace_router
+
 
 app = FastAPI(
     title="PARAMPARA API",
-    description="Source-grounded archive of Indian Knowledge Systems",
+    description="Indian Knowledge Systems through sources, context and transmission.",
     version="0.1.0",
 )
 
 
+# -----------------------------------------
+# CORS
+# -----------------------------------------
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# -----------------------------------------
+# ROUTES
+# -----------------------------------------
+
+app.include_router(trace_router)
+
+
+# -----------------------------------------
+# ROOT
+# -----------------------------------------
+
 @app.get("/")
-async def root():
+def root():
     return {
         "name": "PARAMPARA API",
-        "status": "running",
-        "version": "0.1.0",
+        "status": "online",
     }
 
 
-@app.get("/api/health")
-async def health():
+# -----------------------------------------
+# HEALTH
+# -----------------------------------------
+
+@app.get("/health")
+def health():
     return {
-        "status": "healthy"
+        "api": "ok",
+        "database": test_database_connection(),
     }
