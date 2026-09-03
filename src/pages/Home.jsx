@@ -807,7 +807,7 @@ export default function Home() {
             <a href="#sources">Sources</a>
             <a href="#explore">Concepts</a>
             <a href="#timeline">Timeline</a>
-            <a href="#explore">Traditions</a>
+            <a href="/traditions">Traditions</a>
           </div>
 
           <div className="footer-column">

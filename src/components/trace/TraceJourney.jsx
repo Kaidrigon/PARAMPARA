@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
+
 import "./TraceJourney.css";
 
 const STAGES = [
@@ -463,16 +465,31 @@ function TraditionPanel({
         </p>
 
         <div className="trace-tradition__list">
-        {traditions.map((item) => (
-            <div
-            className="trace-tradition__item"
-            key={item.tradition_id}
-            >
-            <span className="trace-tradition__dot" />
-            <span>{item.name}</span>
-            </div>
-        ))}
-            </div>
+  {traditions.map((item) => {
+    const slug = item.name
+      .toLowerCase()
+      .replace(/\s+and\s+/g, "-")
+      .replace(/\s+/g, "-");
+
+    return (
+      <Link
+        className="trace-tradition__item"
+        key={item.tradition_id}
+        to={`/traditions/${slug}`}
+      >
+        <span className="trace-tradition__dot" />
+
+        <span className="trace-tradition__name">
+          {item.name}
+        </span>
+
+        <span className="trace-tradition__arrow">
+          ↗
+        </span>
+      </Link>
+    );
+  })}
+</div>
     </article>
     );
 }

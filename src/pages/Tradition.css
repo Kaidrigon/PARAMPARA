@@ -1,0 +1,334 @@
+.tradition-page {
+  min-height: 100vh;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.tradition-hero {
+  padding-top: 32px;
+  padding-bottom: 96px;
+  border-bottom: 1px solid var(--color-border-strong);
+}
+
+.tradition-back {
+  display: inline-flex;
+  margin-bottom: 96px;
+  color: var(--color-muted);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.tradition-back:hover {
+  color: var(--color-teal-deep);
+  transform: translateX(-3px);
+}
+
+.tradition-hero__meta {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+  color: var(--color-teal-deep);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.tradition-hero h1 {
+  max-width: 1100px;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 500;
+  line-height: 0.82;
+  letter-spacing: -0.035em;
+}
+
+.tradition-hero__subtitle {
+  margin-top: 36px;
+  color: var(--color-ink-soft);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+}
+
+/* =====================================================
+   SECTION
+   ===================================================== */
+
+.tradition-section {
+  border-bottom: 1px solid var(--color-border-strong);
+}
+
+.tradition-section--alt {
+  background: var(--color-paper-light);
+}
+
+.tradition-section__label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 48px;
+  color: var(--color-teal-deep);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.tradition-section__label span:first-child {
+  color: var(--color-muted);
+}
+
+.tradition-section__label span:last-child {
+  position: relative;
+}
+
+.tradition-section__label span:last-child::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+
+.tradition-section__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 80px;
+}
+
+.tradition-section__grid h2 {
+  max-width: 560px;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0.95;
+}
+
+.tradition-section__grid p {
+  max-width: 700px;
+  color: var(--color-ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+/* =====================================================
+   KEY IDEAS
+   ===================================================== */
+
+.idea-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.idea-card {
+  min-height: 280px;
+  padding: 24px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-paper-light);
+}
+
+.idea-card__number {
+  display: block;
+  margin-bottom: 64px;
+  color: var(--color-muted);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.idea-card h3 {
+  margin-bottom: 14px;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.idea-card p {
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  line-height: 1.75;
+}
+
+/* =====================================================
+   GITA
+   ===================================================== */
+
+.tradition-section--dark {
+  background: var(--color-ink);
+  color: var(--color-paper-light);
+  border-bottom: 0;
+}
+
+.tradition-section--dark .tradition-section__label {
+  color: #8eb7b4;
+}
+
+.tradition-section--dark .tradition-section__label span:first-child {
+  color: #999a94;
+}
+
+.tradition-gita {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 80px;
+  align-items: end;
+}
+
+.tradition-gita h2 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 500;
+  line-height: 0.9;
+}
+
+.tradition-gita p {
+  color: #d5d2c8;
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+/* =====================================================
+   SOURCE
+   ===================================================== */
+
+.tradition-source {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 80px;
+}
+
+.tradition-source__eyebrow {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--color-teal-deep);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.tradition-source h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0.95;
+}
+
+.tradition-source p {
+  color: var(--color-ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.9;
+}
+
+/* =====================================================
+   BOTTOM NAV
+   ===================================================== */
+
+.tradition-next {
+  padding-block: 28px;
+  background: var(--color-paper-deep);
+}
+
+.tradition-next .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.tradition-next a {
+  color: var(--color-ink-soft);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  transition: color var(--transition-fast);
+}
+
+.tradition-next a:hover {
+  color: var(--color-teal-deep);
+}
+
+/* =====================================================
+   404
+   ===================================================== */
+
+.tradition-not-found {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tradition-not-found > span {
+  color: var(--color-teal-deep);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.tradition-not-found h1 {
+  margin: 16px 0 28px;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6rem);
+}
+
+.tradition-not-found a {
+  color: var(--color-teal-deep);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 800px) {
+  .tradition-hero {
+    padding-top: 22px;
+    padding-bottom: 64px;
+  }
+
+  .tradition-back {
+    margin-bottom: 64px;
+  }
+
+  .tradition-hero h1 {
+    font-size: clamp(3.5rem, 17vw, 6rem);
+  }
+
+  .tradition-section__grid,
+  .tradition-gita,
+  .tradition-source {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .tradition-section__label {
+    margin-bottom: 32px;
+  }
+
+  .idea-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .idea-card {
+    min-height: auto;
+  }
+
+  .idea-card__number {
+    margin-bottom: 40px;
+  }
+
+  .tradition-next .container {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

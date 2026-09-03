@@ -609,3 +609,37 @@
     transition-duration: 0.01ms !important;
   }
 }
+/* =====================================================
+   TRADITION LINKS
+   ===================================================== */
+
+.trace-tradition__item {
+  text-decoration: none;
+  transition:
+    border-color var(--transition-normal),
+    background var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.trace-tradition__item:hover {
+  border-color: var(--color-teal-deep);
+  background: var(--color-paper-light);
+  transform: translateY(-2px);
+}
+
+.trace-tradition__name {
+  color: var(--color-ink-soft);
+}
+
+.trace-tradition__arrow {
+  margin-left: 4px;
+  color: var(--color-muted);
+  transition:
+    color var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.trace-tradition__item:hover .trace-tradition__arrow {
+  color: var(--color-teal-deep);
+  transform: translate(2px, -2px);
+}

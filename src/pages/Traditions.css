@@ -1,0 +1,249 @@
+.traditions-page {
+  min-height: 100vh;
+  background: var(--color-paper);
+}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.traditions-hero {
+  padding-top: 32px;
+  padding-bottom: var(--space-10);
+  border-bottom: 1px solid var(--color-border-strong);
+}
+
+.traditions-back {
+  display: inline-flex;
+  margin-bottom: 96px;
+  color: var(--color-muted);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.traditions-back:hover {
+  color: var(--color-teal-deep);
+  transform: translateX(-3px);
+}
+
+.traditions-eyebrow {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--color-teal-deep);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.traditions-title {
+  max-width: 900px;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 9vw, 8rem);
+  font-weight: 500;
+  line-height: 0.82;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+}
+
+.traditions-title em {
+  color: var(--color-teal-deep);
+  font-style: italic;
+}
+
+.traditions-intro {
+  max-width: 620px;
+  margin-top: 48px;
+  color: var(--color-ink-soft);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* =====================================================
+   LIST
+   ===================================================== */
+
+.traditions-list {
+  padding-top: var(--space-9);
+}
+
+.traditions-list__heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+  color: var(--color-teal-deep);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.traditions-list__heading span:first-child {
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.traditions-list__heading span:last-child {
+  position: relative;
+}
+
+.traditions-list__heading span:last-child::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+
+/* =====================================================
+   CARDS
+   ===================================================== */
+
+.traditions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.tradition-card {
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-paper-light);
+  color: var(--color-ink);
+  transition:
+    transform var(--transition-normal),
+    border-color var(--transition-normal),
+    background var(--transition-normal);
+}
+
+.tradition-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-teal-deep);
+  background: #f5f1e8;
+}
+
+.tradition-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-muted);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.tradition-card__arrow {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  color: var(--color-ink-soft);
+  transition:
+    background var(--transition-normal),
+    color var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.tradition-card:hover .tradition-card__arrow {
+  background: var(--color-teal-deep);
+  color: var(--color-paper-light);
+  transform: rotate(45deg);
+}
+
+.tradition-card__content {
+  margin-top: auto;
+  margin-bottom: 56px;
+}
+
+.tradition-card__eyebrow {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--color-teal-deep);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tradition-card h2 {
+  max-width: 560px;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+.tradition-card__subtitle {
+  margin-top: 18px;
+  color: var(--color-ink-soft);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.tradition-card__description {
+  max-width: 520px;
+  margin-top: 20px;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  line-height: 1.8;
+}
+
+.tradition-card__explore {
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border-strong);
+  color: var(--color-teal-deep);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 800px) {
+  .traditions-hero {
+    padding-top: 22px;
+    padding-bottom: 64px;
+  }
+
+  .traditions-back {
+    margin-bottom: 64px;
+  }
+
+  .traditions-title {
+    font-size: clamp(3.5rem, 16vw, 5.5rem);
+  }
+
+  .traditions-intro {
+    margin-top: 32px;
+  }
+
+  .traditions-list {
+    padding-top: 48px;
+  }
+
+  .traditions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tradition-card {
+    min-height: 420px;
+  }
+
+  .tradition-card h2 {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+  }
+}
