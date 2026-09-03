@@ -166,7 +166,7 @@ export default function Home() {
       console.error(error);
 
       setTraceError(
-        "Unable to connect to PARAMPARA. Make sure the backend is running."
+        "Unable to connect to PARAMPARA. it will soon gets fixed."
       );
     } finally {
       setTraceLoading(false);
@@ -912,7 +912,7 @@ export default function Home() {
               EXPLORE
             </div>
 
-            <a href="#sources">
+            <a href="/sources">
               Sources
             </a>
 
@@ -938,15 +938,15 @@ export default function Home() {
               PROJECT
             </div>
 
-            <a href="#about">
+            <a href="https://github.com/Kaidrigon/PARAMPARA">
               About
             </a>
 
-            <a href="#about">
+            <a href="https://github.com/Kaidrigon/PARAMPARA ">
               Methodology
             </a>
 
-            <a href="#about">
+            <a href="https://github.com/Kaidrigon/PARAMPARA">
               Credits
             </a>
           </div>
