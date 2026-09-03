@@ -1,274 +1,331 @@
 import { useEffect, useState } from "react";
 
+import TraceJourney from "../components/trace/TraceJourney";
+import { traceClaim } from "../api/trace";
+
 import "./Home.css";
 
 const layers = [
-    {
+  {
     number: "01",
     title: "PRIMARY TEXT",
     question: "What does the source actually say?",
     meta: "TEXTUAL EVIDENCE",
-    },
-    {
+  },
+  {
     number: "02",
     title: "INTERPRETATION",
     question: "How have traditions understood it?",
     meta: "COMMENTARY",
-    },
-    {
+  },
+  {
     number: "03",
     title: "TRADITION",
     question: "How has the idea lived beyond the page?",
     meta: "PRACTICE · MEMORY · CULTURE",
-    },
-    {
+  },
+  {
     number: "04",
     title: "MODERN CLAIM",
     question: "What is being said about it today?",
     meta: "VERIFY · QUESTION · CONTEXTUALIZE",
-    },
+  },
 ];
 
 const questions = [
-    "Does the Gita actually say what people claim it says?",
-    "What does “dharma” mean in its original context?",
-    "How did different traditions interpret karma?",
-    "Which claims come from the text — and which came later?",
+  "Does the Gita actually say what people claim it says?",
+  "What does “dharma” mean in its original context?",
+  "How did different traditions interpret karma?",
+  "Which claims come from the text — and which came later?",
 ];
 
 const timeline = [
-    ["01", "TEXT", "SOURCE"],
-    ["02", "COMMENTARY", "INTERPRETATION"],
-    ["03", "TRADITION", "TRANSMISSION"],
-    ["04", "TODAY", "MODERN CLAIM"],
+  ["01", "TEXT", "SOURCE"],
+  ["02", "COMMENTARY", "INTERPRETATION"],
+  ["03", "TRADITION", "TRANSMISSION"],
+  ["04", "TODAY", "MODERN CLAIM"],
 ];
 
 function Reveal({ children, className = "" }) {
-    return <div className={`reveal ${className}`}>{children}</div>;
+  return <div className={`reveal ${className}`}>{children}</div>;
 }
 
 function ExploreCard({ number, title, description, label }) {
-    return (
+  return (
     <article className="explore-card">
-        <div className="explore-card__top">
+      <div className="explore-card__top">
         <span>{number}</span>
         <span className="explore-card__arrow">↗</span>
-        </div>
+      </div>
 
-        <div className="explore-card__content">
+      <div className="explore-card__content">
         <h3>{title}</h3>
         <p>{description}</p>
-        </div>
+      </div>
 
-        <div className="explore-card__label">{label} →</div>
+      <div className="explore-card__label">{label} →</div>
     </article>
-    );
+  );
 }
 
 function PeacockTrace({ className = "" }) {
-    return (
+  return (
     <div className={`peacock-trace ${className}`} aria-hidden="true">
-        <span className="peacock-trace__line peacock-trace__line--one" />
-        <span className="peacock-trace__line peacock-trace__line--two" />
-        <span className="peacock-trace__line peacock-trace__line--three" />
-        <span className="peacock-trace__line peacock-trace__line--four" />
-        <span className="peacock-eye" />
+      <span className="peacock-trace__line peacock-trace__line--one" />
+      <span className="peacock-trace__line peacock-trace__line--two" />
+      <span className="peacock-trace__line peacock-trace__line--three" />
+      <span className="peacock-trace__line peacock-trace__line--four" />
+      <span className="peacock-eye" />
     </div>
-    );
+  );
 }
 
 function SketchMark({ type, className = "" }) {
-    return (
+  return (
     <span
-        className={`sketch-mark sketch-mark--${type} ${className}`}
-        aria-hidden="true"
+      className={`sketch-mark sketch-mark--${type} ${className}`}
+      aria-hidden="true"
     />
-    );
+  );
 }
 
 export default function Home() {
-    const [activeLayer, setActiveLayer] = useState(0);
-    const [scrolled, setScrolled] = useState(false);
+  const [activeLayer, setActiveLayer] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
 
-    useEffect(() => {
+  const [claimInput, setClaimInput] = useState("");
+  const [traceResult, setTraceResult] = useState(null);
+  const [traceLoading, setTraceLoading] = useState(false);
+  const [traceError, setTraceError] = useState("");
+
+  useEffect(() => {
     const handleScroll = () => {
-        setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 40);
     };
 
     window.addEventListener("scroll", handleScroll);
 
     return () => {
-        window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
-    }, []);
+  }, []);
 
-    return (
+  async function handleTrace() {
+    const claim = claimInput.trim();
+
+    if (!claim) {
+      setTraceError("Enter a claim to trace.");
+      setTraceResult(null);
+      return;
+    }
+
+    setTraceLoading(true);
+    setTraceError("");
+    setTraceResult(null);
+
+    try {
+      const result = await traceClaim(claim);
+      setTraceResult(result);
+    } catch (error) {
+      console.error(error);
+
+      setTraceError(
+        "Unable to connect to PARAMPARA. Make sure the backend is running."
+      );
+    } finally {
+      setTraceLoading(false);
+    }
+  }
+
+  return (
     <main className="home">
-        {/* =====================================================
-            NAVBAR
+
+      {/* =====================================================
+          NAVBAR
       ===================================================== */}
 
-        <nav className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
+      <nav className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
         <div className="container navbar__inner">
-            <a href="#" className="brand">
+          <a href="#" className="brand">
             <div className="brand__name">PARAMPARA</div>
 
             <div className="brand__sub">
-                INDIAN KNOWLEDGE SYSTEMS
+              INDIAN KNOWLEDGE SYSTEMS
             </div>
-            </a>
+          </a>
 
-            <div className="navbar__links">
+          <div className="navbar__links">
             <a href="#explore">Explore</a>
             <a href="#sources">Sources</a>
             <a href="#timeline">Timeline</a>
             <a href="#about">About</a>
 
             <button className="nav-button" type="button">
-                BEGIN EXPLORING <span>→</span>
+              BEGIN EXPLORING <span>→</span>
             </button>
-            </div>
+          </div>
 
-            <button
+          <button
             className="mobile-menu-button"
             type="button"
             aria-label="Open menu"
-            >
+          >
             ☰
-            </button>
+          </button>
         </div>
-        </nav>
+      </nav>
 
-        {/* =====================================================
-            HERO
+      {/* =====================================================
+          HERO
       ===================================================== */}
 
-        <section className="hero-section">
+      <section className="hero-section">
         <div className="hero-grid-background" />
+
         <div className="hero-circle hero-circle--large" />
         <div className="hero-circle hero-circle--small" />
 
-        <SketchMark type="circle" className="hero-sketch hero-sketch--one" />
-        <SketchMark type="ticks" className="hero-sketch hero-sketch--two" />
+        <SketchMark
+          type="circle"
+          className="hero-sketch hero-sketch--one"
+        />
+
+        <SketchMark
+          type="ticks"
+          className="hero-sketch hero-sketch--two"
+        />
 
         <PeacockTrace className="peacock-trace--hero" />
 
         <div className="container hero-grid">
-            <Reveal>
+          <Reveal>
             <div className="hero-copy">
-                <div className="eyebrow">
+              <div className="eyebrow">
                 <span />
                 AN ARCHIVE OF INDIAN KNOWLEDGE
-                </div>
+              </div>
 
-                <h1>
+              <h1>
                 What was said.
                 <br />
-                <span className="muted-text">What was taught.</span>
-                <br />
-                What we believe.
-                </h1>
 
-                <p className="hero-description">
+                <span className="muted-text">
+                  What was taught.
+                </span>
+
+                <br />
+
+                What we believe.
+              </h1>
+
+              <p className="hero-description">
                 PARAMPARA traces ideas across primary texts,
                 interpretations, traditions and modern claims —
                 so you can explore Indian knowledge with context.
-                </p>
+              </p>
 
-                <div className="hero-actions">
-                <button className="button button--primary" type="button">
-                    EXPLORE THE ARCHIVE
-                    <span>→</span>
+              <div className="hero-actions">
+                <button
+                  className="button button--primary"
+                  type="button"
+                >
+                  EXPLORE THE ARCHIVE
+                  <span>→</span>
                 </button>
 
-                <button className="button button--secondary" type="button">
-                    HOW IT WORKS
+                <button
+                  className="button button--secondary"
+                  type="button"
+                >
+                  HOW IT WORKS
                 </button>
-                </div>
+              </div>
 
-                <div className="hero-principle">
+              <div className="hero-principle">
                 <span>TEXT</span>
                 <span>—</span>
                 <span>CONTEXT</span>
                 <span>—</span>
                 <span>TRANSMISSION</span>
-                </div>
+              </div>
             </div>
-            </Reveal>
+          </Reveal>
 
           {/* HERO ARTIFACT */}
 
-            <Reveal className="hero-artifact-wrapper">
+          <Reveal className="hero-artifact-wrapper">
             <div className="hero-artifact">
-                <div className="artifact-paper">
+              <div className="artifact-paper">
                 <div className="artifact-header">
-                    <span>ARCHIVE / 001</span>
-                    <span>TEXT</span>
+                  <span>ARCHIVE / 001</span>
+                  <span>TEXT</span>
                 </div>
 
                 <div className="artifact-title">
-                    <div className="sanskrit-title">भगवद्गीता</div>
+                  <div className="sanskrit-title">
+                    भगवद्गीता
+                  </div>
 
-                    <div className="english-title">
+                  <div className="english-title">
                     BHAGAVAD GITA
-                    </div>
+                  </div>
                 </div>
 
                 <div className="artifact-divider" />
 
                 <div className="artifact-verse">
-                    कर्मण्येवाधिकारस्ते
-                    <br />
-                    मा फलेषु कदाचन
+                  कर्मण्येवाधिकारस्ते
+                  <br />
+                  मा फलेषु कदाचन
                 </div>
 
                 <div className="artifact-description">
-                    A fragment of a much larger conversation
-                    on action, responsibility and knowledge.
+                  A fragment of a much larger conversation
+                  on action, responsibility and knowledge.
                 </div>
 
                 <div className="artifact-footer">
-                    <span>PARAMPARA</span>
-                    <span>01 / 04</span>
+                  <span>PARAMPARA</span>
+                  <span>01 / 04</span>
                 </div>
-                </div>
+              </div>
 
               {/* Floating tags */}
 
-                <button
+              <button
                 type="button"
                 className={`artifact-tag artifact-tag--primary ${
-                    activeLayer === 0 ? "active" : ""
+                  activeLayer === 0 ? "active" : ""
                 }`}
                 onMouseEnter={() => setActiveLayer(0)}
-                >
+              >
                 PRIMARY SOURCE
-                </button>
+              </button>
 
-                <button
+              <button
                 type="button"
                 className={`artifact-tag artifact-tag--interpretation ${
-                    activeLayer === 1 ? "active" : ""
+                  activeLayer === 1 ? "active" : ""
                 }`}
                 onMouseEnter={() => setActiveLayer(1)}
-                >
+              >
                 INTERPRETATION
-                </button>
+              </button>
 
-                <button
+              <button
                 type="button"
                 className={`artifact-tag artifact-tag--tradition ${
-                    activeLayer === 2 ? "active" : ""
+                  activeLayer === 2 ? "active" : ""
                 }`}
                 onMouseEnter={() => setActiveLayer(2)}
-                >
+              >
                 TRADITION
-                </button>
+              </button>
 
-                <button
+              <button
                 type="button"
                 className={`artifact-tag artifact-tag--modern ${
-                    activeLayer === 3 ? "active" : ""
+                  activeLayer === 3 ? "active" : ""
                 }`}
                 onMouseEnter={() => setActiveLayer(3)}
               >
@@ -300,6 +357,7 @@ export default function Home() {
             <h2>
               Knowledge survives
               <br />
+
               <span className="muted-text">
                 through transmission.
               </span>
@@ -350,7 +408,10 @@ export default function Home() {
           <Reveal>
             <div className="section-heading-row">
               <div>
-                <div className="section-label">EXPLORE</div>
+                <div className="section-label">
+                  EXPLORE
+                </div>
+
                 <h2>Begin with a question.</h2>
               </div>
 
@@ -413,7 +474,9 @@ export default function Home() {
               <div
                 key={layer.number}
                 className={`layer-row ${
-                  activeLayer === index ? "layer-row--active" : ""
+                  activeLayer === index
+                    ? "layer-row--active"
+                    : ""
                 }`}
                 onMouseEnter={() => setActiveLayer(index)}
               >
@@ -442,12 +505,17 @@ export default function Home() {
         <div className="container">
           <Reveal>
             <div className="timeline-heading">
-              <div className="section-label">TRACE</div>
+              <div className="section-label">
+                TRACE
+              </div>
 
               <h2>
                 Ideas have
                 <br />
-                <span className="muted-text">timelines.</span>
+
+                <span className="muted-text">
+                  timelines.
+                </span>
               </h2>
 
               <p>
@@ -464,7 +532,10 @@ export default function Home() {
               <div className="timeline-items">
                 {timeline.map(
                   ([number, title, subtitle]) => (
-                    <div className="timeline-item" key={number}>
+                    <div
+                      className="timeline-item"
+                      key={number}
+                    >
                       <div className="timeline-number">
                         {number}
                       </div>
@@ -525,7 +596,9 @@ export default function Home() {
                 >
                   <div className="question-card__top">
                     <span>0{index + 1}</span>
-                    <span className="question-arrow">→</span>
+                    <span className="question-arrow">
+                      →
+                    </span>
                   </div>
 
                   <h3>{question}</h3>
@@ -619,6 +692,7 @@ export default function Home() {
               <h2>
                 Start with something
                 <br />
+
                 <span>you've heard.</span>
               </h2>
 
@@ -635,35 +709,43 @@ export default function Home() {
                 type="text"
                 placeholder="“Krishna says that…”"
                 aria-label="Claim to trace"
+                value={claimInput}
+                onChange={(event) =>
+                  setClaimInput(event.target.value)
+                }
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    handleTrace();
+                  }
+                }}
               />
 
-              <button type="button">TRACE →</button>
+              <button
+                type="button"
+                onClick={handleTrace}
+                disabled={traceLoading}
+              >
+                {traceLoading
+                  ? "TRACING..."
+                  : "TRACE →"}
+              </button>
             </div>
           </Reveal>
 
-          <Reveal>
-            <div className="trace-flow">
-              {[
-                "CLAIM",
-                "SOURCE",
-                "CONTEXT",
-                "INTERPRETATION",
-                "TRADITION",
-              ].map((item, index) => (
-                <div className="trace-step" key={item}>
-                  <div className="trace-dot" />
-
-                  <div className="trace-label">
-                    {item}
-                  </div>
-
-                  {index < 4 && (
-                    <div className="trace-connector" />
-                  )}
-                </div>
-              ))}
+          {traceError && (
+            <div className="trace-error" role="alert">
+              {traceError}
             </div>
-          </Reveal>
+          )}
+
+          {(traceResult || traceLoading) && (
+            <Reveal>
+              <TraceJourney
+                result={traceResult}
+                loading={traceLoading}
+              />
+            </Reveal>
+          )}
         </div>
       </section>
 
@@ -675,11 +757,14 @@ export default function Home() {
         <PeacockTrace className="peacock-trace--final" />
 
         <Reveal>
-          <div className="final-label">PARAMPARA</div>
+          <div className="final-label">
+            PARAMPARA
+          </div>
 
           <h2>
             Begin with
             <br />
+
             <span>the source.</span>
           </h2>
 
@@ -704,7 +789,9 @@ export default function Home() {
       <footer className="footer">
         <div className="container footer-grid">
           <div>
-            <div className="footer-brand">PARAMPARA</div>
+            <div className="footer-brand">
+              PARAMPARA
+            </div>
 
             <p>
               Indian knowledge systems through sources,
@@ -713,7 +800,9 @@ export default function Home() {
           </div>
 
           <div className="footer-column">
-            <div className="footer-heading">EXPLORE</div>
+            <div className="footer-heading">
+              EXPLORE
+            </div>
 
             <a href="#sources">Sources</a>
             <a href="#explore">Concepts</a>
@@ -722,7 +811,9 @@ export default function Home() {
           </div>
 
           <div className="footer-column">
-            <div className="footer-heading">PROJECT</div>
+            <div className="footer-heading">
+              PROJECT
+            </div>
 
             <a href="#about">About</a>
             <a href="#about">Methodology</a>
