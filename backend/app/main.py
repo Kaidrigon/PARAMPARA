@@ -18,16 +18,11 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=["*"],  # Allows any site (including Vercel) to talk to your backend
+    allow_credentials=False,  # This MUST be False when allow_origins is "*"
+    allow_methods=["*"],  # Allows all types of requests (GET, POST, etc.)
+    allow_headers=["*"],  # Allows all headers
 )
-
-
 # -----------------------------------------
 # ROUTES
 # -----------------------------------------
