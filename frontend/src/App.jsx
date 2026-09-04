@@ -22,6 +22,11 @@ function App() {
       />
 
       <Route
+    path="/sources"
+    element={<Sources />}
+  />
+
+      <Route
         path="/sources/:slug"
         element={<Source />}
       />
