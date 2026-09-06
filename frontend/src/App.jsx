@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/layout/Navbar";
 import Traditions from "./pages/Traditions";
 import Tradition from "./pages/Tradition";
 import Timeline from "./pages/Timeline";
