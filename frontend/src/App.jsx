@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
 import Traditions from "./pages/Traditions";
 import Tradition from "./pages/Tradition";
 import Timeline from "./pages/Timeline";
@@ -9,33 +10,37 @@ import Janmashtami from "./pages/Janmashtami";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
+    <>
+      <Navbar />
 
-      <Route path="/timeline" element={<Timeline />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-      <Route path="/traditions" element={<Traditions />} />
+        <Route path="/timeline" element={<Timeline />} />
 
-      <Route
-        path="/traditions/:slug"
-        element={<Tradition />}
-      />
+        <Route path="/traditions" element={<Traditions />} />
 
-      <Route
-    path="/sources"
-    element={<Source />}
-  />
+        <Route
+          path="/traditions/:slug"
+          element={<Tradition />}
+        />
 
-      <Route
-        path="/sources/:slug"
-        element={<Source />}
-      />
+        <Route
+          path="/sources"
+          element={<Source />}
+        />
 
-      <Route
-        path="/janmashtami"
-        element={<Janmashtami />}
-      />
-    </Routes>
+        <Route
+          path="/sources/:slug"
+          element={<Source />}
+        />
+
+        <Route
+          path="/janmashtami"
+          element={<Janmashtami />}
+        />
+      </Routes>
+    </>
   );
 }
 

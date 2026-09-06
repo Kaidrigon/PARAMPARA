@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import { Link } from "react-router-dom";
 
 import TraceJourney from "../components/trace/TraceJourney";
@@ -14,21 +15,18 @@ const layers = [
     question: "What does the source actually say?",
     meta: "TEXTUAL EVIDENCE",
   },
-
   {
     number: "02",
     title: "INTERPRETATION",
     question: "How have traditions understood it?",
     meta: "COMMENTARY",
   },
-
   {
     number: "03",
     title: "TRADITION",
     question: "How has the idea lived beyond the page?",
     meta: "PRACTICE · MEMORY · CULTURE",
   },
-
   {
     number: "04",
     title: "MODERN CLAIM",
@@ -109,7 +107,6 @@ function PeacockTrace({ className = "" }) {
       <span className="peacock-trace__line peacock-trace__line--two" />
       <span className="peacock-trace__line peacock-trace__line--three" />
       <span className="peacock-trace__line peacock-trace__line--four" />
-
       <span className="peacock-eye" />
     </div>
   );
@@ -126,24 +123,22 @@ function SketchMark({ type, className = "" }) {
 
 export default function Home() {
   const [activeLayer, setActiveLayer] = useState(0);
-  const [scrolled, setScrolled] = useState(false);
 
   const [claimInput, setClaimInput] = useState("");
+
   const [traceResult, setTraceResult] = useState(null);
+
   const [traceLoading, setTraceLoading] = useState(false);
+
   const [traceError, setTraceError] = useState("");
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  function scrollToExplore() {
+    document
+      .getElementById("explore")
+      ?.scrollIntoView({
+        behavior: "smooth",
+      });
+  }
 
   async function handleTrace() {
     const claim = claimInput.trim();
@@ -175,64 +170,6 @@ export default function Home() {
 
   return (
     <main className="home">
-      {/* =====================================================
-          NAVBAR
-      ===================================================== */}
-
-      <nav
-        className={`navbar ${
-          scrolled ? "navbar--scrolled" : ""
-        }`}
-      >
-        <div className="container navbar__inner">
-          <a href="#" className="brand">
-            <div className="brand__name">
-              PARAMPARA
-            </div>
-
-            <div className="brand__sub">
-              INDIAN KNOWLEDGE SYSTEMS
-            </div>
-          </a>
-
-          <div className="navbar__links">
-            <a href="#explore">Explore</a>
-
-            <a href="/sources">Sources</a>
-
-            <Link to="/traditions">
-              Traditions
-            </Link>
-
-            <a href="/timeline">Timeline</a>
-
-            <a href="https://github.com/Kaidrigon/PARAMPARA">About</a>
-
-            <button
-              className="nav-button"
-              type="button"
-              onClick={() => {
-                document
-                  .getElementById("explore")
-                  ?.scrollIntoView({
-                    behavior: "smooth",
-                  });
-              }}
-            >
-              BEGIN EXPLORING{" "}
-              <span>→</span>
-            </button>
-          </div>
-
-          <button
-            className="mobile-menu-button"
-            type="button"
-            aria-label="Open menu"
-          >
-            ☰
-          </button>
-        </div>
-      </nav>
 
       {/* =====================================================
           HERO
@@ -258,8 +195,10 @@ export default function Home() {
         <PeacockTrace className="peacock-trace--hero" />
 
         <div className="container hero-grid">
+
           <Reveal>
             <div className="hero-copy">
+
               <div className="eyebrow">
                 <span />
                 AN ARCHIVE OF INDIAN KNOWLEDGE
@@ -286,34 +225,30 @@ export default function Home() {
               </p>
 
               <div className="hero-actions">
+
                 <button
                   className="button button--primary"
                   type="button"
-                  onClick={() => {
-                    document
-                      .getElementById("explore")
-                      ?.scrollIntoView({
-                        behavior: "smooth",
-                      });
-                  }}
+                  onClick={scrollToExplore}
                 >
                   EXPLORE THE ARCHIVE
                   <span>→</span>
                 </button>
 
                 <button
-  className="button button--secondary"
-  type="button"
-  onClick={() => {
-    window.open(
-      "https://github.com/Kaidrigon/PARAMPARA",
-      "_blank",
-      "noopener,noreferrer"
-    );
-  }}
->
-  HOW IT WORKS
-</button>
+                  className="button button--secondary"
+                  type="button"
+                  onClick={() => {
+                    window.open(
+                      "https://github.com/Kaidrigon/PARAMPARA",
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
+                  }}
+                >
+                  HOW IT WORKS
+                </button>
+
               </div>
 
               <div className="hero-principle">
@@ -323,20 +258,27 @@ export default function Home() {
                 <span>—</span>
                 <span>TRANSMISSION</span>
               </div>
+
             </div>
           </Reveal>
 
-          {/* HERO ARTIFACT */}
+          {/* =================================================
+              HERO ARTIFACT
+          ================================================= */}
 
           <Reveal className="hero-artifact-wrapper">
+
             <div className="hero-artifact">
+
               <div className="artifact-paper">
+
                 <div className="artifact-header">
                   <span>ARCHIVE / 001</span>
                   <span>TEXT</span>
                 </div>
 
                 <div className="artifact-title">
+
                   <div className="sanskrit-title">
                     भगवद्गीता
                   </div>
@@ -344,6 +286,7 @@ export default function Home() {
                   <div className="english-title">
                     BHAGAVAD GITA
                   </div>
+
                 </div>
 
                 <div className="artifact-divider" />
@@ -363,6 +306,7 @@ export default function Home() {
                   <span>PARAMPARA</span>
                   <span>01 / 04</span>
                 </div>
+
               </div>
 
               {/* Floating tags */}
@@ -406,14 +350,18 @@ export default function Home() {
               >
                 MODERN CLAIM
               </button>
+
             </div>
+
           </Reveal>
+
         </div>
 
         <div className="scroll-marker">
           SCROLL TO EXPLORE
           <span />
         </div>
+
       </section>
 
       {/* =====================================================
@@ -421,10 +369,13 @@ export default function Home() {
       ===================================================== */}
 
       <section className="transmission-section">
+
         <PeacockTrace className="peacock-trace--transmission" />
 
         <Reveal>
+
           <div className="narrow-content transmission-content">
+
             <div className="section-label">
               THE PARAMPARA PRINCIPLE
             </div>
@@ -443,11 +394,15 @@ export default function Home() {
               from interpretation to tradition, and from
               tradition into the world we inhabit today.
             </p>
+
           </div>
+
         </Reveal>
 
         <Reveal>
+
           <div className="transmission-line">
+
             <div className="transmission-top">
               <span>TEXT</span>
               <span>→</span>
@@ -465,8 +420,11 @@ export default function Home() {
               <span />
               <span>MODERN CLAIM</span>
             </div>
+
           </div>
+
         </Reveal>
+
       </section>
 
       {/* =====================================================
@@ -474,15 +432,20 @@ export default function Home() {
       ===================================================== */}
 
       <section id="explore" className="explore-section">
+
         <div className="container">
+
           <SketchMark
             type="arrow"
             className="explore-sketch explore-sketch--one"
           />
 
           <Reveal>
+
             <div className="section-heading-row">
+
               <div>
+
                 <div className="section-label">
                   EXPLORE
                 </div>
@@ -490,16 +453,20 @@ export default function Home() {
                 <h2>
                   Begin with a question.
                 </h2>
+
               </div>
 
               <p>
                 Explore ideas, texts and traditions through
                 the layers that shaped them.
               </p>
+
             </div>
+
           </Reveal>
 
           <div className="explore-grid">
+
             <ExploreCard
               number="01"
               title="Bhagavad Gita"
@@ -514,10 +481,6 @@ export default function Home() {
               label="EXPLORE CONCEPTS"
             />
 
-            {/* =================================================
-                LIVING TRADITIONS → JANMASHTAMI
-            ================================================= */}
-
             <ExploreCard
               number="03"
               title="Living Traditions"
@@ -525,8 +488,11 @@ export default function Home() {
               label="EXPLORE JANMASHTAMI"
               to="/janmashtami"
             />
+
           </div>
+
         </div>
+
       </section>
 
       {/* =====================================================
@@ -534,11 +500,15 @@ export default function Home() {
       ===================================================== */}
 
       <section className="layers-section">
+
         <div className="container">
+
           <PeacockTrace className="peacock-trace--layers" />
 
           <Reveal>
+
             <div className="layers-heading">
+
               <div className="section-label section-label--gold">
                 METHOD
               </div>
@@ -548,11 +518,15 @@ export default function Home() {
                 <br />
                 the same kind of knowledge.
               </h2>
+
             </div>
+
           </Reveal>
 
           <div className="layers-list">
+
             {layers.map((layer, index) => (
+
               <div
                 key={layer.number}
                 className={`layer-row ${
@@ -564,31 +538,48 @@ export default function Home() {
                   setActiveLayer(index)
                 }
               >
+
                 <span className="layer-number">
                   {layer.number}
                 </span>
 
-                <h3>{layer.title}</h3>
+                <h3>
+                  {layer.title}
+                </h3>
 
-                <p>{layer.question}</p>
+                <p>
+                  {layer.question}
+                </p>
 
                 <span className="layer-meta">
                   {layer.meta}
                 </span>
+
               </div>
+
             ))}
+
           </div>
+
         </div>
+
       </section>
 
       {/* =====================================================
           TIMELINE
       ===================================================== */}
 
-      <section id="timeline" className="timeline-section">
+      <section
+        id="timeline"
+        className="timeline-section"
+      >
+
         <div className="container">
+
           <Reveal>
+
             <div className="timeline-heading">
+
               <div className="section-label">
                 TRACE
               </div>
@@ -606,20 +597,27 @@ export default function Home() {
                 Follow an idea across centuries — from text
                 to interpretation to living tradition.
               </p>
+
             </div>
+
           </Reveal>
 
           <Reveal>
+
             <div className="timeline">
+
               <div className="timeline-line" />
 
               <div className="timeline-items">
+
                 {timeline.map(
                   ([number, title, subtitle]) => (
+
                     <div
                       className="timeline-item"
                       key={number}
                     >
+
                       <div className="timeline-number">
                         {number}
                       </div>
@@ -633,16 +631,30 @@ export default function Home() {
                       </button>
 
                       <div className="timeline-text">
-                        <div>{title}</div>
-                        <span>{subtitle}</span>
+
+                        <div>
+                          {title}
+                        </div>
+
+                        <span>
+                          {subtitle}
+                        </span>
+
                       </div>
+
                     </div>
+
                   )
                 )}
+
               </div>
+
             </div>
+
           </Reveal>
+
         </div>
+
       </section>
 
       {/* =====================================================
@@ -650,17 +662,25 @@ export default function Home() {
       ===================================================== */}
 
       <section className="questions-section">
+
         <div className="container">
+
           <PeacockTrace className="peacock-trace--questions" />
 
           <Reveal>
+
             <div className="section-heading-row">
+
               <div>
+
                 <div className="section-label">
                   QUESTIONS WORTH ASKING
                 </div>
 
-                <h2>Start somewhere.</h2>
+                <h2>
+                  Start somewhere.
+                </h2>
+
               </div>
 
               <p>
@@ -668,32 +688,50 @@ export default function Home() {
                 believe. It's about helping you trace where
                 an idea came from.
               </p>
+
             </div>
+
           </Reveal>
 
           <div className="questions-grid">
-            {questions.map((question, index) => (
-              <Reveal key={question}>
-                <button
-                  type="button"
-                  className="question-card"
-                >
-                  <div className="question-card__top">
-                    <span>
-                      0{index + 1}
-                    </span>
 
-                    <span className="question-arrow">
-                      →
-                    </span>
-                  </div>
+            {questions.map(
+              (question, index) => (
 
-                  <h3>{question}</h3>
-                </button>
-              </Reveal>
-            ))}
+                <Reveal key={question}>
+
+                  <button
+                    type="button"
+                    className="question-card"
+                  >
+
+                    <div className="question-card__top">
+
+                      <span>
+                        0{index + 1}
+                      </span>
+
+                      <span className="question-arrow">
+                        →
+                      </span>
+
+                    </div>
+
+                    <h3>
+                      {question}
+                    </h3>
+
+                  </button>
+
+                </Reveal>
+
+              )
+            )}
+
           </div>
+
         </div>
+
       </section>
 
       {/* =====================================================
@@ -704,11 +742,15 @@ export default function Home() {
         id="sources"
         className="featured-section"
       >
+
         <div className="narrow-container">
+
           <PeacockTrace className="peacock-trace--featured" />
 
           <Reveal>
+
             <div className="featured-card">
+
               <div className="featured-circle featured-circle--one" />
 
               <div className="featured-circle featured-circle--two" />
@@ -719,7 +761,9 @@ export default function Home() {
               />
 
               <div className="featured-content">
+
                 <div className="featured-header">
+
                   <span className="gold-label">
                     FEATURED SOURCE
                   </span>
@@ -727,9 +771,11 @@ export default function Home() {
                   <span>
                     ARCHIVE / 001
                   </span>
+
                 </div>
 
                 <div className="featured-main">
+
                   <div className="featured-meta">
                     BHAGAVAD GITA · CHAPTER 2 · VERSE 47
                   </div>
@@ -745,12 +791,15 @@ export default function Home() {
                     interpretations and the traditions through
                     which its meaning has been transmitted.
                   </p>
+
                 </div>
 
                 <div className="featured-tags">
+
                   <span>PRIMARY SOURCE</span>
                   <span>CONTEXT</span>
                   <span>INTERPRETATIONS</span>
+
                 </div>
 
                 <button
@@ -759,10 +808,15 @@ export default function Home() {
                 >
                   EXPLORE SOURCE →
                 </button>
+
               </div>
+
             </div>
+
           </Reveal>
+
         </div>
+
       </section>
 
       {/* =====================================================
@@ -770,14 +824,18 @@ export default function Home() {
       ===================================================== */}
 
       <section className="trace-section">
+
         <div className="narrow-container">
+
           <SketchMark
             type="circle"
             className="trace-sketch trace-sketch--one"
           />
 
           <Reveal>
+
             <div className="trace-heading">
+
               <div className="section-label section-label--gold">
                 TRACE A CLAIM
               </div>
@@ -795,11 +853,15 @@ export default function Home() {
                 Follow a claim back through its source,
                 context, interpretation and transmission.
               </p>
+
             </div>
+
           </Reveal>
 
           <Reveal>
+
             <div className="trace-input-wrapper">
+
               <input
                 type="text"
                 placeholder="“Krishna says that…”"
@@ -824,7 +886,9 @@ export default function Home() {
                   ? "TRACING..."
                   : "TRACE →"}
               </button>
+
             </div>
+
           </Reveal>
 
           {traceError && (
@@ -837,14 +901,20 @@ export default function Home() {
           )}
 
           {(traceResult || traceLoading) && (
+
             <Reveal>
+
               <TraceJourney
                 result={traceResult}
                 loading={traceLoading}
               />
+
             </Reveal>
+
           )}
+
         </div>
+
       </section>
 
       {/* =====================================================
@@ -855,9 +925,11 @@ export default function Home() {
         id="about"
         className="final-section"
       >
+
         <PeacockTrace className="peacock-trace--final" />
 
         <Reveal>
+
           <div className="final-label">
             PARAMPARA
           </div>
@@ -866,7 +938,9 @@ export default function Home() {
             Begin with
             <br />
 
-            <span>the source.</span>
+            <span>
+              the source.
+            </span>
           </h2>
 
           <p>
@@ -877,17 +951,13 @@ export default function Home() {
           <button
             type="button"
             className="button button--primary final-button"
-            onClick={() => {
-              document
-                .getElementById("explore")
-                ?.scrollIntoView({
-                  behavior: "smooth",
-                });
-            }}
+            onClick={scrollToExplore}
           >
             ENTER PARAMPARA →
           </button>
+
         </Reveal>
+
       </section>
 
       {/* =====================================================
@@ -895,8 +965,11 @@ export default function Home() {
       ===================================================== */}
 
       <footer className="footer">
+
         <div className="container footer-grid">
+
           <div>
+
             <div className="footer-brand">
               PARAMPARA
             </div>
@@ -905,9 +978,11 @@ export default function Home() {
               Indian knowledge systems through sources,
               context and transmission.
             </p>
+
           </div>
 
           <div className="footer-column">
+
             <div className="footer-heading">
               EXPLORE
             </div>
@@ -931,31 +1006,49 @@ export default function Home() {
             <Link to="/traditions">
               Traditions
             </Link>
+
           </div>
 
           <div className="footer-column">
+
             <div className="footer-heading">
               PROJECT
             </div>
 
-            <a href="https://github.com/Kaidrigon/PARAMPARA">
+            <a
+              href="https://github.com/Kaidrigon/PARAMPARA"
+              target="_blank"
+              rel="noreferrer"
+            >
               About
             </a>
 
-            <a href="https://github.com/Kaidrigon/PARAMPARA ">
+            <a
+              href="https://github.com/Kaidrigon/PARAMPARA"
+              target="_blank"
+              rel="noreferrer"
+            >
               Methodology
             </a>
 
-            <a href="https://github.com/Kaidrigon/PARAMPARA">
+            <a
+              href="https://github.com/Kaidrigon/PARAMPARA"
+              target="_blank"
+              rel="noreferrer"
+            >
               Credits
             </a>
+
           </div>
 
           <div className="footer-copyright">
             © 2026 PARAMPARA
           </div>
+
         </div>
+
       </footer>
+
     </main>
   );
 }

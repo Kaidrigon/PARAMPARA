@@ -1,78 +1,201 @@
-.navbar {
-  width: min(
-    calc(100% - 48px),
-    var(--container-width)
-  );
+/* =========================================================
+   NAVBAR
+   ========================================================= */
 
-  margin: 0 auto;
-  padding: 24px 0;
+.navbar {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 76px;
+
+  border-bottom: 1px solid transparent;
+
+  transition:
+    background var(--transition-normal),
+    border-color var(--transition-normal),
+    backdrop-filter var(--transition-normal);
+}
+
+.navbar--scrolled {
+  border-bottom-color: var(--color-border);
+  background: rgba(234, 229, 216, 0.88);
+  backdrop-filter: blur(18px);
+}
+
+.navbar__inner {
+  height: 76px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  position: relative;
-  z-index: 10;
 }
 
-.navbar__brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+
+  color: inherit;
+  text-decoration: none;
+
+  line-height: 1;
 }
 
-.navbar__mark {
-  width: 34px;
-  height: 34px;
-
-  display: grid;
-  place-items: center;
-
-  border: 1px solid var(--color-ink);
-  border-radius: 50%;
-
+.brand__name {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
 }
 
-.navbar__name {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+.brand__sub {
+  margin-top: 6px;
+
+  color: var(--color-muted);
+
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
+
+
+/* =========================================================
+   DESKTOP LINKS
+   ========================================================= */
 
 .navbar__links {
   display: flex;
   align-items: center;
   gap: 32px;
-
-  font-size: 13px;
-  color: var(--color-muted);
 }
 
-.navbar__links a {
+.navbar__links > a,
+.navbar__text-link {
+  position: relative;
+
+  border: 0;
+  padding: 0;
+
+  background: transparent;
+  color: var(--color-muted);
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
   transition: color var(--transition-fast);
 }
 
-.navbar__links a:hover {
-  color: var(--color-teal);
+.navbar__links > a::after,
+.navbar__text-link::after {
+  content: "";
+
+  position: absolute;
+  right: 0;
+  bottom: -7px;
+  left: 0;
+
+  height: 1px;
+
+  background: var(--color-teal);
+
+  transform: scaleX(0);
+  transform-origin: right;
+
+  transition: transform var(--transition-fast);
 }
 
-.navbar__menu {
-  display: none;
-
-  border: 0;
-  background: none;
-
-  font-size: 13px;
+.navbar__links > a:hover,
+.navbar__text-link:hover {
   color: var(--color-ink);
 }
 
+.navbar__links > a:hover::after,
+.navbar__text-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+/* =========================================================
+   BEGIN EXPLORING
+   ========================================================= */
+
+.nav-button {
+  display: inline-flex;
+  align-items: center;
+
+  margin-left: 4px;
+  padding: 12px 18px;
+
+  border: 1px solid var(--color-border-strong);
+
+  background: transparent;
+  color: var(--color-ink);
+
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.nav-button span {
+  margin-left: 9px;
+  font-size: 14px;
+}
+
+.nav-button:hover {
+  border-color: var(--color-ink);
+
+  background: var(--color-ink);
+  color: var(--color-paper-light);
+}
+
+
+/* =========================================================
+   BIRD MENU
+   ========================================================= */
+
+.bird-menu {
+  display: none;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 800px) {
+
   .navbar {
+    height: 70px;
+  }
+
+  .navbar__inner {
+    height: 70px;
+
     width: min(
       calc(100% - 32px),
-      var(--container-width)
+      var(--container-lg)
     );
   }
 
@@ -80,7 +203,314 @@
     display: none;
   }
 
-  .navbar__menu {
+  .brand__name {
+    font-size: 20px;
+  }
+
+  .brand__sub {
+    font-size: 7px;
+    letter-spacing: 0.18em;
+  }
+
+
+  /* -------------------------------------------------------
+     BIRD CONTAINER
+     ------------------------------------------------------- */
+
+  .bird-menu {
+    position: relative;
+
+    width: 54px;
+    height: 54px;
+
     display: block;
+  }
+
+
+  /* -------------------------------------------------------
+     BIRD BUTTON
+     ------------------------------------------------------- */
+
+  .mobile-menu-button {
+    position: absolute;
+
+    z-index: 4;
+
+    top: 50%;
+    right: 0;
+
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+
+    border: 1px solid var(--color-border-strong);
+    border-radius: 50%;
+
+    background: rgba(234, 229, 216, 0.76);
+    color: var(--color-ink);
+
+    cursor: pointer;
+
+    transform: translateY(-50%);
+
+    transition:
+      background var(--transition-fast),
+      border-color var(--transition-fast),
+      transform 500ms var(--ease-standard);
+  }
+
+  .mobile-menu-button:active {
+    transform: translateY(-50%) scale(0.94);
+  }
+
+  .bird-menu--open .mobile-menu-button {
+    border-color: var(--color-teal);
+    background: var(--color-paper-light);
+  }
+
+
+  /* -------------------------------------------------------
+     BIRD SVG
+     ------------------------------------------------------- */
+
+  .bird-icon {
+    width: 34px;
+    height: 28px;
+
+    overflow: visible;
+
+    color: var(--color-ink);
+
+    transition:
+      transform 500ms var(--ease-standard);
+  }
+
+  .bird-body,
+  .bird-head,
+  .bird-wing,
+  .bird-tail {
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .bird-head {
+    fill: var(--color-paper-light);
+  }
+
+  .bird-eye {
+    fill: currentColor;
+  }
+
+  .bird-beak {
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.2;
+    stroke-linejoin: round;
+  }
+
+  .bird-wing {
+    transform-box: fill-box;
+    transform-origin: bottom center;
+
+    transition:
+      transform 450ms var(--ease-standard);
+  }
+
+  .bird-wing--left {
+    transform: rotate(18deg);
+  }
+
+  .bird-wing--right {
+    transform: rotate(-18deg);
+  }
+
+  .bird-menu--open .bird-wing--left {
+    transform: rotate(-28deg) translateY(-2px);
+  }
+
+  .bird-menu--open .bird-wing--right {
+    transform: rotate(28deg) translateY(-2px);
+  }
+
+
+  /* -------------------------------------------------------
+     RADIAL ITEMS
+     ------------------------------------------------------- */
+
+  .bird-menu__items {
+    position: absolute;
+
+    z-index: 2;
+
+    top: 50%;
+    right: 24px;
+
+    width: 1px;
+    height: 1px;
+
+    pointer-events: none;
+  }
+
+  .bird-menu__item {
+    --distance: 92px;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: max-content;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+    color: var(--color-ink);
+
+    font-family: inherit;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(var(--item-angle))
+      translateX(0)
+      rotate(calc(var(--item-angle) * -1))
+      scale(0.7);
+
+    transition:
+      opacity 280ms ease,
+      transform 520ms var(--ease-standard);
+  }
+
+  .bird-menu--open .bird-menu__item {
+    opacity: 1;
+    pointer-events: auto;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(var(--item-angle))
+      translateX(var(--distance))
+      rotate(calc(var(--item-angle) * -1))
+      scale(1);
+  }
+
+  .bird-menu__label {
+    display: block;
+
+    padding: 9px 12px;
+
+    border: 1px solid var(--color-border-strong);
+
+    background: rgba(234, 229, 216, 0.96);
+
+    box-shadow: var(--shadow-soft);
+
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    transition:
+      color var(--transition-fast),
+      background var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .bird-menu__item:hover .bird-menu__label,
+  .bird-menu__item--selected .bird-menu__label {
+    border-color: var(--color-teal);
+
+    background: var(--color-teal);
+    color: var(--color-paper-light);
+  }
+
+
+  /* -------------------------------------------------------
+     SELECTED ITEM / FLIGHT
+     ------------------------------------------------------- */
+
+  .bird-menu--flying .bird-menu__item:not(.bird-menu__item--selected) {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      rotate(var(--item-angle))
+      translateX(70px)
+      rotate(calc(var(--item-angle) * -1))
+      scale(0.6);
+  }
+
+  .bird-menu--flying .bird-menu__item--selected {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      rotate(var(--item-angle))
+      translateX(15px)
+      rotate(calc(var(--item-angle) * -1))
+      scale(0.8);
+  }
+
+  .bird-menu--flying .mobile-menu-button {
+    border-color: transparent;
+    background: transparent;
+
+    transform:
+      translateY(-50%)
+      translateX(70px)
+      scale(0.7);
+
+    opacity: 0;
+  }
+
+  .bird-menu--flying .bird-icon {
+    transform: rotate(-10deg) scale(1.15);
+  }
+
+
+  /* -------------------------------------------------------
+     SMALL PHONES
+     ------------------------------------------------------- */
+
+  @media (max-width: 500px) {
+
+    .bird-menu__item {
+      --distance: 82px;
+    }
+
+    .bird-menu__label {
+      padding: 8px 10px;
+      font-size: 7px;
+    }
+
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .navbar *,
+  .navbar *::before,
+  .navbar *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
