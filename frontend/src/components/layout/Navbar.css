@@ -343,142 +343,176 @@
 
 
   /* -------------------------------------------------------
-     RADIAL ITEMS
-     ------------------------------------------------------- */
+   RADIAL ITEMS
+   ------------------------------------------------------- */
 
-  .bird-menu__items {
-    position: absolute;
+.bird-menu__items {
+  position: absolute;
+  z-index: 20;
 
-    z-index: 2;
+  /*
+    Anchor the menu directly around the bird.
+    The items will expand toward the LEFT side
+    instead of going above the viewport.
+  */
+  top: 50%;
+  right: 24px;
 
-    top: 50%;
-    right: 24px;
+  width: 1px;
+  height: 1px;
 
-    width: 1px;
-    height: 1px;
+  pointer-events: none;
+}
 
-    pointer-events: none;
-  }
+.bird-menu__item {
+  --distance: 78px;
 
-  .bird-menu__item {
-    --distance: 92px;
+  position: absolute;
+  top: 0;
+  left: 0;
 
-    position: absolute;
+  width: max-content;
+  padding: 0;
 
-    top: 0;
-    left: 0;
+  border: 0;
+  background: transparent;
 
-    width: max-content;
+  color: var(--color-ink);
+  font-family: inherit;
 
-    padding: 0;
+  opacity: 0;
+  pointer-events: none;
 
-    border: 0;
+  /*
+    CLOSED POSITION
+  */
+  transform:
+    translate(-50%, -50%)
+    translateX(0)
+    scale(0.7);
 
-    background: transparent;
-    color: var(--color-ink);
+  transition:
+    opacity 220ms ease,
+    transform 450ms var(--ease-standard);
+}
 
-    font-family: inherit;
+/*
+   OPEN POSITION
 
-    opacity: 0;
-    pointer-events: none;
+   Instead of using rotate() + translateX(),
+   we explicitly position each option.
 
-    transform:
-      translate(-50%, -50%)
-      rotate(var(--item-angle))
-      translateX(0)
-      rotate(calc(var(--item-angle) * -1))
-      scale(0.7);
+   This keeps the entire menu visible.
+*/
 
-    transition:
-      opacity 280ms ease,
-      transform 520ms var(--ease-standard);
-  }
+/* SOURCES */
+.bird-menu__item:nth-child(1) {
+  --x: -155px;
+  --y: -72px;
+}
 
-  .bird-menu--open .bird-menu__item {
-    opacity: 1;
-    pointer-events: auto;
+/* TRADITIONS */
+.bird-menu__item:nth-child(2) {
+  --x: -165px;
+  --y: -22px;
+}
 
-    transform:
-      translate(-50%, -50%)
-      rotate(var(--item-angle))
-      translateX(var(--distance))
-      rotate(calc(var(--item-angle) * -1))
-      scale(1);
-  }
+/* TIMELINE */
+.bird-menu__item:nth-child(3) {
+  --x: -155px;
+  --y: 28px;
+}
 
-  .bird-menu__label {
-    display: block;
+/* JANMASHTAMI */
+.bird-menu__item:nth-child(4) {
+  --x: -125px;
+  --y: 75px;
+}
 
-    padding: 9px 12px;
+.bird-menu--open .bird-menu__item {
+  opacity: 1;
+  pointer-events: auto;
 
-    border: 1px solid var(--color-border-strong);
+  transform:
+    translate(-50%, -50%)
+    translate(var(--x), var(--y))
+    scale(1);
+}
 
-    background: rgba(234, 229, 216, 0.96);
+/* -------------------------------------------------------
+   LABEL
+   ------------------------------------------------------- */
 
-    box-shadow: var(--shadow-soft);
+.bird-menu__label {
+  display: block;
 
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+  padding: 9px 12px;
 
-    white-space: nowrap;
+  border: 1px solid var(--color-border-strong);
 
-    transition:
-      color var(--transition-fast),
-      background var(--transition-fast),
-      border-color var(--transition-fast);
-  }
+  background: rgba(234, 229, 216, 0.97);
 
-  .bird-menu__item:hover .bird-menu__label,
-  .bird-menu__item--selected .bird-menu__label {
-    border-color: var(--color-teal);
+  box-shadow: var(--shadow-soft);
 
-    background: var(--color-teal);
-    color: var(--color-paper-light);
-  }
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
 
+  text-transform: uppercase;
+  white-space: nowrap;
 
-  /* -------------------------------------------------------
-     SELECTED ITEM / FLIGHT
-     ------------------------------------------------------- */
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
 
-  .bird-menu--flying .bird-menu__item:not(.bird-menu__item--selected) {
-    opacity: 0;
-    transform:
-      translate(-50%, -50%)
-      rotate(var(--item-angle))
-      translateX(70px)
-      rotate(calc(var(--item-angle) * -1))
-      scale(0.6);
-  }
+.bird-menu__item:hover .bird-menu__label,
+.bird-menu__item--selected .bird-menu__label {
+  border-color: var(--color-teal);
+  background: var(--color-teal);
+  color: var(--color-paper-light);
+}
 
-  .bird-menu--flying .bird-menu__item--selected {
-    opacity: 0;
+/* -------------------------------------------------------
+   FLIGHT
+   ------------------------------------------------------- */
 
-    transform:
-      translate(-50%, -50%)
-      rotate(var(--item-angle))
-      translateX(15px)
-      rotate(calc(var(--item-angle) * -1))
-      scale(0.8);
-  }
+.bird-menu--flying .bird-menu__item:not(.bird-menu__item--selected) {
+  opacity: 0;
 
-  .bird-menu--flying .mobile-menu-button {
-    border-color: transparent;
-    background: transparent;
+  transform:
+    translate(-50%, -50%)
+    translate(var(--x), var(--y))
+    scale(0.6);
+}
 
-    transform:
-      translateY(-50%)
-      translateX(70px)
-      scale(0.7);
+.bird-menu--flying .bird-menu__item--selected {
+  opacity: 0;
 
-    opacity: 0;
-  }
+  transform:
+    translate(-50%, -50%)
+    translate(var(--x), var(--y))
+    scale(0.8);
+}
 
-  .bird-menu--flying .bird-icon {
-    transform: rotate(-10deg) scale(1.15);
-  }
+.bird-menu--flying .mobile-menu-button {
+  border-color: transparent;
+  background: transparent;
+
+  transform:
+    translateY(-50%)
+    translateX(55px)
+    scale(0.7);
+
+  opacity: 0;
+}
+
+.bird-menu--flying .bird-icon {
+  transform:
+    rotate(-10deg)
+    scale(1.15);
+}
 
 
   /* -------------------------------------------------------
